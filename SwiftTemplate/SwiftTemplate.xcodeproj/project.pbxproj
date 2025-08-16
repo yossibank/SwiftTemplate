@@ -13,7 +13,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		78F93EF02E50626700346B12 /* SwiftTemplate */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftTemplate;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
