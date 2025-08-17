@@ -1,12 +1,5 @@
-//
-//  ContentView.swift
-//  SwiftTemplate
-//
-//  Created by Kamiyama Yoshihito on 2025/08/16.
-//
-
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
