@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		78F93EF02E50626700346B12 /* SwiftTemplate */ = {
+		78F93EF02E50626700346B12 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Sources;
 			sourceTree = "<group>";
@@ -32,7 +32,7 @@
 		78F93EE52E50626700346B12 = {
 			isa = PBXGroup;
 			children = (
-				78F93EF02E50626700346B12 /* SwiftTemplate */,
+				78F93EF02E50626700346B12 /* Sources */,
 				78F93EEF2E50626700346B12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				78F93EF02E50626700346B12 /* SwiftTemplate */,
+				78F93EF02E50626700346B12 /* Sources */,
 			);
 			name = SwiftTemplate;
 			packageProductDependencies = (

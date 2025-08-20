@@ -3,24 +3,123 @@
 
 import PackageDescription
 
-let package = Package(
-    name: "Package",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
+// MARK: - Extension
+
+extension Target {
+    private var dependency: Target.Dependency {
+        .target(
+            name: name,
+            condition: nil
+        )
+    }
+
+    fileprivate func library(targets: [Target] = []) -> Product {
         .library(
-            name: "Package",
-            targets: ["Package"]
+            name: name,
+            targets: [name] + targets.map(\.name)
+        )
+    }
+
+    static func target(
+        name: String,
+        dependencies: [Target] = [],
+        dependenciesLibraries: [Target.Dependency] = [],
+        resources: [Resource] = []
+    ) -> Target {
+        .target(
+            name: name,
+            dependencies: dependencies.map(\.dependency) + dependenciesLibraries,
+            resources: resources
+        )
+    }
+
+    static func testTarget(
+        name: String,
+        dependencies: [Target],
+        dependenciesLibraries: [Target.Dependency] = [],
+        resources: [Resource] = []
+    ) -> Target {
+        .testTarget(
+            name: name,
+            dependencies: dependencies.map(\.dependency) + dependenciesLibraries,
+            resources: resources
+        )
+    }
+}
+
+extension Package {
+    static func package(
+        name: String,
+        defaultLocalization: LanguageTag = "ja",
+        platforms: [SupportedPlatform],
+        dependencies: [Dependency] = [],
+        targets: [Target],
+        testTargets: [Target]
+    ) -> Package {
+        .init(
+            name: name,
+            defaultLocalization: defaultLocalization,
+            platforms: platforms,
+            products: targets.map { $0.library() },
+            dependencies: dependencies,
+            targets: targets + testTargets
+        )
+    }
+}
+
+// MARK: - Library
+
+let ohHttpStubs = Target.Dependency.product(
+    name: "OHHTTPStubsSwift",
+    package: "OHHTTPStubs"
+)
+
+// MARK: - Package
+
+let apiClient = Target.target(
+    name: "APIClient"
+)
+
+let mockolo = Target.target(
+    name: "Mockolo",
+    dependencies: [
+        apiClient
+    ]
+)
+
+// MARK: - Test Package
+
+let apiClientTests = Target.testTarget(
+    name: "APIClientTests",
+    dependencies: [
+        apiClient
+    ],
+    dependenciesLibraries: [
+        ohHttpStubs
+    ],
+    resources: [
+        .process("JSON")
+    ]
+)
+
+// MARK: - Target
+
+let package = Package.package(
+    name: "Package",
+    platforms: [
+        .iOS(.v17)
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/AliSoftware/OHHTTPStubs",
+            from: "9.1.0"
         )
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "Package"
-        ),
-        .testTarget(
-            name: "PackageTests",
-            dependencies: ["Package"]
-        )
+        apiClient,
+        mockolo
+    ],
+    testTargets: [
+        apiClientTests
     ]
 )

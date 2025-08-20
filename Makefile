@@ -4,6 +4,7 @@ PRODUCT_NAME := SwiftTemplate
 setup:
 	$(MAKE) install-bundler
 	$(MAKE) install-mint-packages
+	$(MAKE) generate-mock
 	$(MAKE) open
 
 .PHONY: pre-commit
@@ -30,6 +31,10 @@ install-mint-packages:
 .PHONY: update-package
 update-package:
 	sh ./script/renovate/update-package.sh
+
+.PHONY: generate-mock
+generate-mock:
+	sh ./script/setting/mockolo.sh
 
 .PHONY: run-format
 run-format:
