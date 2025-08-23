@@ -80,6 +80,13 @@ let appExtension = Target.target(
     name: "AppExtension"
 )
 
+let appFeature = Target.target(
+    name: "AppFeature",
+    dependencies: [
+        appExtension
+    ]
+)
+
 let apiClient = Target.target(
     name: "APIClient"
 )
@@ -113,6 +120,13 @@ let appExtensionTests = Target.testTarget(
     ]
 )
 
+let appFeatureTests = Target.testTarget(
+    name: "AppFeatureTests",
+    dependencies: [
+        appFeature
+    ]
+)
+
 // MARK: - Target
 
 let package = Package.package(
@@ -129,10 +143,12 @@ let package = Package.package(
     targets: [
         apiClient,
         appExtension,
+        appFeature,
         mockolo
     ],
     testTargets: [
         apiClientTests,
-        appExtensionTests
+        appExtensionTests,
+        appFeatureTests
     ]
 )
