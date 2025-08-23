@@ -87,7 +87,22 @@ let appExtension = Target.target(
 let appFeature = Target.target(
     name: "AppFeature",
     dependencies: [
+        appConfiguration,
         appExtension
+    ]
+)
+
+let appUI = Target.target(
+    name: "AppUI",
+    dependencies: [
+        appFeature
+    ]
+)
+
+let viewComponent = Target.target(
+    name: "ViewComponent",
+    dependencies: [
+        appUI
     ]
 )
 
@@ -156,7 +171,9 @@ let package = Package.package(
         appConfiguration,
         appExtension,
         appFeature,
-        mockolo
+        appUI,
+        mockolo,
+        viewComponent
     ],
     testTargets: [
         apiClientTests,
