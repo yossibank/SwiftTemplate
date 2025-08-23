@@ -76,6 +76,10 @@ let ohHttpStubs = Target.Dependency.product(
 
 // MARK: - Package
 
+let appExtension = Target.target(
+    name: "AppExtension"
+)
+
 let apiClient = Target.target(
     name: "APIClient"
 )
@@ -102,6 +106,13 @@ let apiClientTests = Target.testTarget(
     ]
 )
 
+let appExtensionTests = Target.testTarget(
+    name: "AppExtensionTests",
+    dependencies: [
+        appExtension
+    ]
+)
+
 // MARK: - Target
 
 let package = Package.package(
@@ -117,9 +128,11 @@ let package = Package.package(
     ],
     targets: [
         apiClient,
+        appExtension,
         mockolo
     ],
     testTargets: [
-        apiClientTests
+        apiClientTests,
+        appExtensionTests
     ]
 )
