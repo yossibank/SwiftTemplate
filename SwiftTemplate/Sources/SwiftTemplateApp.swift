@@ -1,6 +1,7 @@
 import AppConfiguration
 import AppDebug
 import AppFeature
+import AppFirebase
 import AppUI
 import SwiftData
 import SwiftUI
@@ -43,11 +44,18 @@ struct SwiftTemplateApp: App {
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
+    private let date = DateConverter().dateToString(
+        .now,
+        format: .yyyyMdJp
+    )
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         BuildConfiguration.setup()
+        FirebaseConfiguration.setup()
+        FirebaseAnalytics(screenID: .boot).sendEvent(.boot(date: date))
         Logger.info(message: "【Environment】\(AppBuild.value)")
         return true
     }

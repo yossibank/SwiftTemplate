@@ -14,6 +14,7 @@
 		78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF962E59E54E00FF4A66 /* ViewComponent */; };
 		78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF982E59E55100FF4A66 /* AppUI */; };
 		78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFAD2E5A08D200FF4A66 /* AppDebug */; };
+		78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFB92E5A14BA00FF4A66 /* AppFirebase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 				78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */,
 				78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */,
 				78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */,
+				78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */,
 				78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */,
 				78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */,
 			);
@@ -77,9 +79,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78F93F112E50626900346B12 /* Build configuration list for PBXNativeTarget "SwiftTemplate" */;
 			buildPhases = (
+				78C6CFB72E5A0F8900FF4A66 /* GoogleService Info Plist */,
 				78F93EEA2E50626700346B12 /* Sources */,
 				78F93EEB2E50626700346B12 /* Frameworks */,
 				78F93EEC2E50626700346B12 /* Resources */,
+				78C6CFB82E5A0FC200FF4A66 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -97,6 +101,7 @@
 				78C6CF962E59E54E00FF4A66 /* ViewComponent */,
 				78C6CF982E59E55100FF4A66 /* AppUI */,
 				78C6CFAD2E5A08D200FF4A66 /* AppDebug */,
+				78C6CFB92E5A14BA00FF4A66 /* AppFirebase */,
 			);
 			productName = SwiftTemplate;
 			productReference = 78F93EEE2E50626700346B12 /* SwiftTemplate.app */;
@@ -145,6 +150,52 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		78C6CFB72E5A0F8900FF4A66 /* GoogleService Info Plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "GoogleService Info Plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh ../script/buildPhases/google-service-info-plist.sh\n\n";
+		};
+		78C6CFB82E5A0FC200FF4A66 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh ../script/buildPhases/crashlytics.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		78F93EEA2E50626700346B12 /* Sources */ = {
@@ -225,6 +276,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WHPY5MQSB;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -375,8 +427,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6WHPY5MQSB;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -408,6 +462,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WHPY5MQSB;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -481,6 +536,10 @@
 		78C6CFAD2E5A08D200FF4A66 /* AppDebug */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppDebug;
+		};
+		78C6CFB92E5A14BA00FF4A66 /* AppFirebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppFirebase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

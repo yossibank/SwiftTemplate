@@ -1,5 +1,6 @@
 targets=(
     "APIClient"
+	"AppFirebase"
 )
 
 for target in "${targets[@]}"; do

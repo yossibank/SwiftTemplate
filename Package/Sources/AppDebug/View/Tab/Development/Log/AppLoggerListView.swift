@@ -19,7 +19,12 @@ struct AppLoggerListView: View {
         return trimmedQuery.isEmpty
             ? newEntries
             : newEntries.filter {
-                $0.message.range(
+                let message = switch $0.message {
+                case let .text(text): text
+                case let .event(event): event.name
+                }
+
+                return message.range(
                     of: trimmedQuery,
                     options: [.caseInsensitive, .diacriticInsensitive, .widthInsensitive]
                 ) != nil

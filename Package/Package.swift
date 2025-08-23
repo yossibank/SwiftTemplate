@@ -69,6 +69,16 @@ extension Package {
 
 // MARK: - Library
 
+let firebaseAnalytics = Target.Dependency.product(
+    name: "FirebaseAnalytics",
+    package: "firebase-ios-sdk"
+)
+
+let firebaseCrashlytics = Target.Dependency.product(
+    name: "FirebaseCrashlytics",
+    package: "firebase-ios-sdk"
+)
+
 let ohHttpStubs = Target.Dependency.product(
     name: "OHHTTPStubsSwift",
     package: "OHHTTPStubs"
@@ -89,6 +99,17 @@ let appFeature = Target.target(
     dependencies: [
         appConfiguration,
         appExtension
+    ]
+)
+
+let appFirebase = Target.target(
+    name: "AppFirebase",
+    dependencies: [
+        appFeature
+    ],
+    dependenciesLibraries: [
+        firebaseAnalytics,
+        firebaseCrashlytics
     ]
 )
 
@@ -169,6 +190,10 @@ let package = Package.package(
     ],
     dependencies: [
         .package(
+            url: "https://github.com/firebase/firebase-ios-sdk",
+            from: "11.15.0"
+        ),
+        .package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
             from: "9.1.0"
         )
@@ -179,6 +204,7 @@ let package = Package.package(
         appDebug,
         appExtension,
         appFeature,
+        appFirebase,
         appUI,
         mockolo,
         viewComponent

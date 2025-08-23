@@ -46,11 +46,54 @@ struct AppLoggerView: View {
                     }
             }
 
-            Text(entry.message)
-                .opacity(0.7)
-                .font(.caption)
-                .bold()
-                .lineLimit(5)
+            switch entry.message {
+            case let .text(text):
+                Text(text)
+                    .opacity(0.7)
+                    .font(.caption)
+                    .bold()
+                    .lineLimit(5)
+
+            case let .event(event):
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("イベント名")
+                            .opacity(0.7)
+                            .font(.caption)
+                            .bold()
+
+                        Spacer()
+
+                        Text("呼び出し回数: \(entry.eventCount)回")
+                            .opacity(0.5)
+                            .font(.caption)
+                            .bold()
+                    }
+
+                    Text(event.name)
+                        .opacity(0.5)
+                        .font(.caption)
+                        .bold()
+                }
+
+                if !event.parameters.isEmpty {
+                    VStack(alignment: .leading) {
+                        Text("パラメータ名")
+                            .opacity(0.7)
+                            .font(.caption)
+                            .bold()
+
+                        ForEach(event.parameters.keys.sorted(), id: \.self) { key in
+                            if let value = event.parameters[key] {
+                                Text("\(key): \(value)")
+                                    .opacity(0.5)
+                                    .font(.caption)
+                                    .bold()
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -66,6 +109,7 @@ private extension Logger.Category {
         case .error: .red
         case .critical: .purple
         case .fault: .brown
+        case .firebase: .mint
         }
     }
 }
@@ -75,7 +119,8 @@ private extension Logger.Category {
         entry: .init(
             date: .now,
             category: .debug,
-            message: "DEBUG LOG"
+            message: .text("DEBUG LOG"),
+            eventCount: 1
         )
     )
     .padding()

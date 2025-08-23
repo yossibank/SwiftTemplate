@@ -1,3 +1,4 @@
+import AppConfiguration
 import Foundation
 import os
 
@@ -11,6 +12,7 @@ public enum Logger {
         case error
         case critical
         case fault
+        case firebase
 
         public var title: String {
             switch self {
@@ -22,19 +24,29 @@ public enum Logger {
             case .error: "ERROR"
             case .critical: "CRITICAL"
             case .fault: "FAULT"
+            case .firebase: "FIREBASE"
             }
         }
+    }
+
+    public enum Message: Sendable {
+        case text(String)
+        case event(FirebaseAnalyticsEvent)
     }
 }
 
 private extension Logger {
     static func doLog(
         _ category: Category,
-        message: String,
+        message: Message,
         file: String = #file,
         function: String = #function,
         line: UInt = #line
     ) {
+        guard !AppBuild.isRelease else {
+            return
+        }
+
         let prefix = switch category {
         case .trace: "✉️【TRACE】"
         case .debug: "🔍【DEBUG】"
@@ -44,12 +56,18 @@ private extension Logger {
         case .error: "🚨【ERROR】"
         case .critical: "👿【CRITICAL】"
         case .fault: "💣【FAULT】"
+        case .firebase: "🐧【FIREBASE】"
         }
 
         let logger = os.Logger(
             subsystem: Bundle.main.bundleIdentifier ?? "",
             category: category.rawValue
         )
+
+        let message = switch message {
+        case let .text(text): text
+        case let .event(event): event.logMessage ?? "???"
+        }
 
         let fileName = file.split(separator: "/").last!
 
@@ -129,7 +147,15 @@ private extension Logger {
                 \(prefix, privacy: .public)
                 \(message, privacy: .public) 
                 📁File: \(fileName, privacy: .public) L:\(line)
-                🔔Function: \(function, privacy: .public) 
+                🔔Function: \(function, privacy: .public)
+                """
+            )
+
+        case .firebase:
+            logger.info(
+                """
+                \(prefix, privacy: .public)
+                jsonMessage: \(message, privacy: .public)
                 """
             )
         }
@@ -146,7 +172,7 @@ public extension Logger {
     ) {
         doLog(
             .trace,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -162,7 +188,7 @@ public extension Logger {
     ) {
         doLog(
             .debug,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -178,7 +204,7 @@ public extension Logger {
     ) {
         doLog(
             .info,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -193,7 +219,7 @@ public extension Logger {
     ) {
         doLog(
             .notice,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -208,7 +234,7 @@ public extension Logger {
     ) {
         doLog(
             .warning,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -223,7 +249,7 @@ public extension Logger {
     ) {
         doLog(
             .error,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -238,7 +264,7 @@ public extension Logger {
     ) {
         doLog(
             .critical,
-            message: message,
+            message: .text(message),
             file: file,
             function: function,
             line: line
@@ -253,7 +279,22 @@ public extension Logger {
     ) {
         doLog(
             .fault,
-            message: message,
+            message: .text(message),
+            file: file,
+            function: function,
+            line: line
+        )
+    }
+
+    static func firebase(
+        event: FirebaseAnalyticsEvent,
+        file: String = #file,
+        function: String = #function,
+        line: UInt = #line
+    ) {
+        doLog(
+            .firebase,
+            message: .event(event),
             file: file,
             function: function,
             line: line

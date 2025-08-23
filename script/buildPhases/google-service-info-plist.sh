@@ -1,0 +1,1 @@
+cp "${PROJECT_DIR}/Sources/Configuration/Plist/Firebase/GoogleService-Info-${CONFIGURATION}.plist" "${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist"
