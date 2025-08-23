@@ -1,6 +1,6 @@
 import Foundation
 
-public struct LoggerEntry {
+public struct LoggerEntry: Sendable {
     public let date: Date
     public let category: Logger.Category
     public let message: String

@@ -106,6 +106,13 @@ let viewComponent = Target.target(
     ]
 )
 
+let appDebug = Target.target(
+    name: "AppDebug",
+    dependencies: [
+        viewComponent
+    ]
+)
+
 let apiClient = Target.target(
     name: "APIClient"
 )
@@ -169,6 +176,7 @@ let package = Package.package(
     targets: [
         apiClient,
         appConfiguration,
+        appDebug,
         appExtension,
         appFeature,
         appUI,

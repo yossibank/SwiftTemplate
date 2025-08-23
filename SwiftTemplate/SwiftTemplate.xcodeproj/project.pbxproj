@@ -13,6 +13,7 @@
 		78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6E2E59CAE900FF4A66 /* AppFeature */; };
 		78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF962E59E54E00FF4A66 /* ViewComponent */; };
 		78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF982E59E55100FF4A66 /* AppUI */; };
+		78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFAD2E5A08D200FF4A66 /* AppDebug */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 				78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */,
 				78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */,
 				78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */,
+				78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */,
 				78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */,
 				78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */,
 			);
@@ -94,6 +96,7 @@
 				78C6CF6E2E59CAE900FF4A66 /* AppFeature */,
 				78C6CF962E59E54E00FF4A66 /* ViewComponent */,
 				78C6CF982E59E55100FF4A66 /* AppUI */,
+				78C6CFAD2E5A08D200FF4A66 /* AppDebug */,
 			);
 			productName = SwiftTemplate;
 			productReference = 78F93EEE2E50626700346B12 /* SwiftTemplate.app */;
@@ -474,6 +477,10 @@
 		78C6CF982E59E55100FF4A66 /* AppUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUI;
+		};
+		78C6CFAD2E5A08D200FF4A66 /* AppDebug */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppDebug;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

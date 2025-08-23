@@ -2,7 +2,7 @@ import Foundation
 import os
 
 public enum Logger {
-    public enum Category: String, CaseIterable {
+    public enum Category: String, CaseIterable, Sendable {
         case trace
         case debug
         case info
