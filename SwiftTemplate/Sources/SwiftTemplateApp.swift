@@ -31,20 +31,32 @@ struct SwiftTemplateApp: App {
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    private let date = DateConverter().dateToString(
-        .now,
-        format: .yyyyMdJp
-    )
-
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        setup()
+        sendLog()
+        sendEvent()
+        return true
+    }
+
+    private func setup() {
         BuildConfiguration.setup()
         FirebaseConfiguration.setup()
-        FirebaseAnalytics(screenID: .boot).sendEvent(.boot(date: date))
+    }
+
+    private func sendLog() {
         Logger.info(message: "【Environment】\(AppBuild.value)")
-        return true
+    }
+
+    private func sendEvent() {
+        let date = DateConverter().dateToString(
+            .now,
+            format: .yyyyMdJp
+        )
+
+        FirebaseAnalytics(screenID: .boot).sendEvent(.boot(date: date))
     }
 }
 
