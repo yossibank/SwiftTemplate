@@ -15,13 +15,13 @@ permissions:
   statuses: write
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.app
+  DEVELOPER_DIR: /Applications/Xcode.app
 
 jobs:
   ci:
     name: Run Test
 
-    runs-on: macos-latest
+    runs-on: macos-15
 
     env:
       MINT_PATH: mint/lib
