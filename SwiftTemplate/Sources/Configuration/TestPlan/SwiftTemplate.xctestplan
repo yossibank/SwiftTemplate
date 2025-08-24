@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "2D69D443-B9CD-46D4-BFCF-7FA858701DCB",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "APIClientTests",
+        "name" : "APIClientTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "AppConfigurationTests",
+        "name" : "AppConfigurationTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "AppExtensionTests",
+        "name" : "AppExtensionTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "AppFeatureTests",
+        "name" : "AppFeatureTests"
+      }
+    }
+  ],
+  "version" : 1
+}

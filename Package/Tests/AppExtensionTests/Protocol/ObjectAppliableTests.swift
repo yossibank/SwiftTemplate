@@ -12,8 +12,6 @@ actor ObjectAppliableTests {
     @Test("クロージャ内で自身プロパティにアクセスできること")
     func apply() {
         // arrange
-        let object1 = Object()
-
         let expected = Object()
         expected.text1 = "text1"
         expected.text2 = "text2"

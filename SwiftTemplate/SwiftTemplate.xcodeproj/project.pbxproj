@@ -80,6 +80,8 @@
 			buildConfigurationList = 78F93F112E50626900346B12 /* Build configuration list for PBXNativeTarget "SwiftTemplate" */;
 			buildPhases = (
 				78C6CFB72E5A0F8900FF4A66 /* GoogleService Info Plist */,
+				783AAEB52E5A93ED00026537 /* Build Release */,
+				783AAEB62E5A945700026537 /* License Plist */,
 				78F93EEA2E50626700346B12 /* Sources */,
 				78F93EEB2E50626700346B12 /* Frameworks */,
 				78F93EEC2E50626700346B12 /* Resources */,
@@ -152,6 +154,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		783AAEB52E5A93ED00026537 /* Build Release */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Release";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh ../script/buildPhases/release-build.sh\n";
+		};
+		783AAEB62E5A945700026537 /* License Plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "License Plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh ../script/buildPhases/license-plist.sh\n";
+		};
 		78C6CFB72E5A0F8900FF4A66 /* GoogleService Info Plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;

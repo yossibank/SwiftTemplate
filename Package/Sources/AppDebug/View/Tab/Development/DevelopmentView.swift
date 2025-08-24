@@ -34,7 +34,7 @@ struct DevelopmentView: View {
                 }
             }
             .scrollContentBackground(.hidden)
-            .background(.gray.opacity(0.25))
+            .background(.gray.opacity(0.12))
             .listStyle(.insetGrouped)
             .navigationTitle("開発メニュー")
             .navigationBarTitleDisplayMode(.inline)

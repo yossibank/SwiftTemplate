@@ -69,3 +69,6 @@ fastlane/test_output
 
 # ENV
 .env
+
+# Firebase
+GoogleService*
