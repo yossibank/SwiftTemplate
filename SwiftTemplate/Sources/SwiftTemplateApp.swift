@@ -12,19 +12,6 @@ struct SwiftTemplateApp: App {
 
     @State private var isShowDebug = false
 
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -39,7 +26,7 @@ struct SwiftTemplateApp: App {
                     )
                 }
         }
-        .modelContainer(sharedModelContainer)
+        .debugContainer()
     }
 }
 
@@ -58,5 +45,15 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseAnalytics(screenID: .boot).sendEvent(.boot(date: date))
         Logger.info(message: "【Environment】\(AppBuild.value)")
         return true
+    }
+}
+
+private extension Scene {
+    func debugContainer() -> some Scene {
+        #if DEBUG
+            modelContainer(AppDebugDataContainer.container)
+        #else
+            self
+        #endif
     }
 }

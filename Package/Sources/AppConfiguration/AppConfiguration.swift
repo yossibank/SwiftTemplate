@@ -1,3 +1,5 @@
+import Foundation
+
 public typealias AppBuild = AppConfiguration.Build
 
 public enum AppConfiguration {
@@ -18,6 +20,14 @@ public enum AppConfiguration {
 
         public static var isRelease: Bool {
             value == .release
+        }
+
+        public static var isTesting: Bool {
+            NSClassFromString("XCTestCase") != nil
+        }
+
+        public static var isLogging: Bool {
+            isDev && !isTesting
         }
     }
 }

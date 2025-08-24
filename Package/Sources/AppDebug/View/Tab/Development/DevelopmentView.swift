@@ -26,6 +26,12 @@ struct DevelopmentView: View {
                             .bold()
                             .font(.subheadline)
                     }
+
+                    NavigationLink(value: Route.log(.api(.list))) {
+                        Text("APIログ")
+                            .bold()
+                            .font(.subheadline)
+                    }
                 } header: {
                     Text("アプリログ履歴")
                         .bold()
@@ -44,4 +50,5 @@ struct DevelopmentView: View {
 
 #Preview {
     DevelopmentView(dataModel: .init(appVersion: "1.0.0"))
+        .modelContainer(AppDebugDataContainer.previewContainer)
 }

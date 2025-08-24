@@ -23,4 +23,5 @@ public struct DebugView: View {
 
 #Preview {
     DebugView(dataModel: .init(appVersion: "1.0.0"))
+        .modelContainer(AppDebugDataContainer.previewContainer)
 }

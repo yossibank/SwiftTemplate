@@ -4,12 +4,26 @@ import SwiftUI
 final class Router: @unchecked Sendable {
     var path = [Route]()
 
-    @ViewBuilder func view(for route: Route) -> some View {
+    @MainActor
+    @ViewBuilder
+    func view(for route: Route) -> some View {
         switch route {
         case let .log(log):
             switch log {
             case .app:
                 AppLoggerListView()
+
+            case let .api(api):
+                switch api {
+                case .list:
+                    APIResponseListView()
+
+                case let .detail(model):
+                    APIResponseDetailView(model: model)
+
+                case let .body(model, mode):
+                    APIResponseBodyView(model: model, mode: mode)
+                }
             }
         }
     }
