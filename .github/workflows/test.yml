@@ -50,6 +50,10 @@ jobs:
       - name: Show Simulator List
         run: xcrun simctl list devices
 
+      # Simulatorのダウンロード
+      - name: Download iOS Platform
+        run: xcodebuild -downloadPlatform iOS
+
       # Gemsのインストール
       - name: Install Bundled Gems
         run: |
