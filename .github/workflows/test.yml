@@ -103,7 +103,7 @@ jobs:
           -configuration Debug
           -scheme Debug
           -testPlan 'SwiftTemplate'
-          -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.5'
+          -destination 'platform=iOS Simulator,name=iPhone 16'
           -clonedSourcePackagesDirPath SourcePackages
           -resultBundlePath Test/SwiftTemplate.xcresult
           -derivedDataPath DerivedData
