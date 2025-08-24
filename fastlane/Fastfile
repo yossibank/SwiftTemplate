@@ -1,8 +1,83 @@
+fastlane_require "dotenv"
+
+ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "100"
+ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "10"
+
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "環境変数"
+  before_all do
+    Dotenv.overload ".env"
+  end
+
+  desc "テスト実行"
+  lane :test do
+    scan(
+      workspace: 'SwiftTemplate.xcworkspace',
+      configuration: "Debug",
+      scheme: "Debug",
+      device: "iPhone 16 Pro",
+      result_bundle: true,
+      output_directory: "build",
+      cloned_source_packages_path: "SourcePackages",
+      derived_data_path: "DerivedData",
+      clean: true
+    )
+  end
+
+  desc "検証用 Code Signing 設定"
+  lane :setting_adhoc_code_signing do
+    update_code_signing_settings(
+      path: "SwiftTemplate/SwiftTemplate.xcodeproj",
+      targets: "SwiftTemplate",
+      build_configurations: "AdHoc",
+      code_sign_identity: "",
+      profile_name: "",
+      bundle_identifier: "yossibank.yahoo.co.jp.SwiftTemplate.adhoc"
+    )
+  end
+
+  desc "本番用 Code Signing 設定"
+  lane :setting_appstore_code_signing do
+    update_code_signing_settings(
+      path: "SwiftTemplate/SwiftTemplate.xcodeproj",
+      targets: "SwiftTemplate",
+      build_configurations: "Release",
+      code_sign_identity: "",
+      profile_name: "",
+      bundle_identifier: "yossibank.yahoo.co.jp.SwiftTemplate"
+    )
+  end
+
+  desc "検証用 ipa 出力"
+  lane :output_adhoc_ipa do
+    setting_adhoc_code_signing
+
+    gym(
+      workspace: "SwiftTemplate.xcworkspace",
+      scheme: "AdHoc",
+      configuration: "AdHoc",
+      output_directory: "./ipa/adhoc",
+      output_name: "SwiftTemplate_adhoc.ipa",
+      export_method: "ad-hoc",
+      clean: true
+    )
+  end
+
+
+  desc "本番用 ipa 出力"
+  lane :output_appstore_ipa do
+    setting_appstore_code_signing
+
+    gym(
+      workspace: "SwiftTemplate.xcworkspace",
+      scheme: "Release",
+      configuration: "Release",
+      output_directory: "./ipa/appstore",
+      output_name: "SwiftTemplate.ipa",
+      export_method: "app-store",
+      clean: true
+    )
   end
 end

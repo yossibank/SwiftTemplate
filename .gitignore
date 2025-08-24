@@ -64,11 +64,23 @@ fastlane/test_output
 # Other
 .DS_Store
 
+# DerivedData
+DerivedData/
+
+# SourcePackages
+SourcePackages
+
+# build
+build/
+
+# ipa
+ipa/
+
+# Firebase
+GoogleService*
+
 # Mockolo
 *Mock.swift
 
 # ENV
 .env
-
-# Firebase
-GoogleService*
