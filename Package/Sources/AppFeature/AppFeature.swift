@@ -48,7 +48,7 @@ public enum AppFeature {
     }
 
     public enum AppError: Error, Equatable {
-        case decode(String)
+        case decode
         case timeout
         case notConnectedToInternet
         case emptyResponse

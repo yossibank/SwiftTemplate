@@ -56,7 +56,7 @@ actor APIClientTests {
             )
         } catch {
             // assert
-            #expect(error as! APIError == .decode("データのフォーマットが正しくないため、読み込めませんでした。"))
+            #expect(error as! APIError == .decode)
         }
     }
 

@@ -1,7 +1,7 @@
 import Foundation
 
 public enum APIError: Error, Equatable {
-    case decode(String)
+    case decode
     case timeout
     case notConnectedToInternet
     case emptyResponse
@@ -13,7 +13,7 @@ public enum APIError: Error, Equatable {
 public extension APIError {
     static func parse(_ error: any Error) -> APIError {
         if error is DecodingError {
-            return .decode(error.localizedDescription)
+            return .decode
         }
 
         // -1001エラー
@@ -39,8 +39,8 @@ public extension APIError {
 extension APIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case let .decode(description):
-            "Decode error: \(description)"
+        case .decode:
+            "Decode error"
 
         case .timeout:
             "Timeout error"
