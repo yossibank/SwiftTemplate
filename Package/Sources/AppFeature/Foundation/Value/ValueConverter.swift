@@ -1,6 +1,6 @@
 import Foundation
 
-public struct ValueConverter {
+public struct ValueConverter: Sendable {
     public struct Formatter {
         public let value: Double?
         public let valueFormat: ValueFormat

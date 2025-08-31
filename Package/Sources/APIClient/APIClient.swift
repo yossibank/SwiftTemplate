@@ -1,7 +1,8 @@
+import AppDebug
 import Foundation
 
 /// @mockable
-public protocol APIClientProtocol {
+public protocol APIClientProtocol: Sendable {
     func request<T>(item: some APIRequest<T>) async throws -> T
 }
 
@@ -27,12 +28,27 @@ public struct APIClient: APIClientProtocol {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
+            await sendLog(
+                data: data,
+                urlRequest: urlRequest,
+                urlResponse: urlResponse,
+                queryItems: item.queryItems
+            )
+
             return try JSONDecoder().decode(
                 T.self,
                 from: data
             )
         } catch {
-            throw APIError.parse(error)
+            let apiError = APIError.parse(error)
+
+            await sendErrorLog(
+                apiError: apiError,
+                urlRequest: urlRequest,
+                queryItems: item.queryItems
+            )
+
+            throw apiError
         }
     }
 }
@@ -64,5 +80,40 @@ private extension APIClient {
         }
 
         return urlRequest
+    }
+
+    func sendLog(
+        data: Data,
+        urlRequest: URLRequest,
+        urlResponse: HTTPURLResponse,
+        queryItems: [URLQueryItem]?
+    ) async {
+        await AppDebugDataContainer.interceptor(
+            .init(
+                data: data,
+                errorDescription: nil,
+                errorLocalizedDescription: nil,
+                urlRequest: urlRequest,
+                urlResponse: urlResponse,
+                queryItems: queryItems
+            )
+        )
+    }
+
+    func sendErrorLog(
+        apiError: APIError,
+        urlRequest: URLRequest,
+        queryItems: [URLQueryItem]?
+    ) async {
+        await AppDebugDataContainer.interceptor(
+            .init(
+                data: nil,
+                errorDescription: apiError.errorDescription,
+                errorLocalizedDescription: apiError.localizedDescription,
+                urlRequest: urlRequest,
+                urlResponse: nil,
+                queryItems: queryItems
+            )
+        )
     }
 }

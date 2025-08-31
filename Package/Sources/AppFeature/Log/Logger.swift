@@ -4,6 +4,7 @@ import os
 
 public enum Logger {
     public enum Category: String, CaseIterable, Sendable {
+        case firebase
         case trace
         case debug
         case info
@@ -12,10 +13,10 @@ public enum Logger {
         case error
         case critical
         case fault
-        case firebase
 
         public var title: String {
             switch self {
+            case .firebase: "FIREBASE"
             case .trace: "TRACE"
             case .debug: "DEBUG"
             case .info: "INFO"
@@ -24,7 +25,6 @@ public enum Logger {
             case .error: "ERROR"
             case .critical: "CRITICAL"
             case .fault: "FAULT"
-            case .firebase: "FIREBASE"
             }
         }
     }
@@ -48,6 +48,7 @@ private extension Logger {
         }
 
         let prefix = switch category {
+        case .firebase: "🐧【FIREBASE】"
         case .trace: "✉️【TRACE】"
         case .debug: "🔍【DEBUG】"
         case .info: "💻【INFO】"
@@ -56,7 +57,6 @@ private extension Logger {
         case .error: "🚨【ERROR】"
         case .critical: "👿【CRITICAL】"
         case .fault: "💣【FAULT】"
-        case .firebase: "🐧【FIREBASE】"
         }
 
         let logger = os.Logger(
@@ -72,6 +72,14 @@ private extension Logger {
         let fileName = file.split(separator: "/").last!
 
         switch category {
+        case .firebase:
+            logger.info(
+                """
+                \(prefix, privacy: .public)
+                jsonMessage: \(message, privacy: .public)
+                """
+            )
+
         case .trace:
             logger.trace(
                 """
@@ -150,19 +158,27 @@ private extension Logger {
                 🔔Function: \(function, privacy: .public)
                 """
             )
-
-        case .firebase:
-            logger.info(
-                """
-                \(prefix, privacy: .public)
-                jsonMessage: \(message, privacy: .public)
-                """
-            )
         }
     }
 }
 
 public extension Logger {
+    // for firebase
+    static func firebase(
+        event: FirebaseAnalyticsEvent,
+        file: String = #file,
+        function: String = #function,
+        line: UInt = #line
+    ) {
+        doLog(
+            .firebase,
+            message: .event(event),
+            file: file,
+            function: function,
+            line: line
+        )
+    }
+
     // only debug
     static func trace(
         message: String,
@@ -280,21 +296,6 @@ public extension Logger {
         doLog(
             .fault,
             message: .text(message),
-            file: file,
-            function: function,
-            line: line
-        )
-    }
-
-    static func firebase(
-        event: FirebaseAnalyticsEvent,
-        file: String = #file,
-        function: String = #function,
-        line: UInt = #line
-    ) {
-        doLog(
-            .firebase,
-            message: .event(event),
             file: file,
             function: function,
             line: line

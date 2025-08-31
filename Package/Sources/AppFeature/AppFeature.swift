@@ -1,3 +1,4 @@
+import AppExtension
 import Foundation
 
 public typealias AppDate = AppFeature.Date
@@ -31,14 +32,14 @@ public enum AppFeature {
         }
     }
 
-    public enum AppState<T: Equatable>: Equatable {
+    public enum AppState<T: Equatable & Sendable>: Equatable, Sendable {
         case initial
         case loading
         case error(AppError)
         case loaded(T)
     }
 
-    public enum AppPagingState<T: Equatable>: Equatable {
+    public enum AppPagingState<T: Equatable & Sendable>: Equatable, Sendable {
         case initial
         case initialLoading
         case additionalLoading

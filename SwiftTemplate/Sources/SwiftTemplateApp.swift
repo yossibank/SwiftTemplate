@@ -1,8 +1,12 @@
+import APIClient
 import AppConfiguration
 import AppDebug
 import AppFeature
 import AppFirebase
 import AppUI
+import Rakuten
+import RakutenConnector
+import RakutenView
 import SwiftData
 import SwiftUI
 
@@ -14,7 +18,7 @@ struct SwiftTemplateApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RakutenView(viewModel: RakutenViewModel.make())
                 .onShake {
                     isShowDebug.toggle()
                 }

@@ -1,3 +1,4 @@
+import AppFeature
 import Foundation
 
 public enum APIError: Error, Equatable {
@@ -33,6 +34,20 @@ public extension APIError {
         }
 
         return apiError
+    }
+}
+
+public extension APIError {
+    var asAppError: AppError {
+        switch self {
+        case .decode: .decode
+        case .timeout: .timeout
+        case .notConnectedToInternet: .notConnectedToInternet
+        case .emptyResponse: .emptyResponse
+        case .invalidRequest: .invalidRequest
+        case let .invalidStatusCode(code): .invalidStatusCode(code)
+        case .unknown: .unknown
+        }
     }
 }
 

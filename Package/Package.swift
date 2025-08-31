@@ -135,13 +135,44 @@ let appDebug = Target.target(
 )
 
 let apiClient = Target.target(
-    name: "APIClient"
+    name: "APIClient",
+    dependencies: [
+        appDebug,
+        appFeature
+    ]
+)
+
+let rakuten = Target.target(
+    name: "Rakuten",
+    dependencies: [
+        apiClient,
+        appExtension
+    ]
+)
+
+let rakutenView = Target.target(
+    name: "RakutenView",
+    dependencies: [
+        viewComponent
+    ]
+)
+
+let rakutenConnector = Target.target(
+    name: "RakutenConnector",
+    dependencies: [
+        appFirebase,
+        rakuten,
+        rakutenView
+    ]
 )
 
 let mockolo = Target.target(
     name: "Mockolo",
     dependencies: [
-        apiClient
+        apiClient,
+        appFirebase,
+        rakuten,
+        rakutenConnector
     ]
 )
 
@@ -160,13 +191,6 @@ let apiClientTests = Target.testTarget(
     ]
 )
 
-let appConfiugrationTests = Target.testTarget(
-    name: "AppConfigurationTests",
-    dependencies: [
-        appConfiguration
-    ]
-)
-
 let appExtensionTests = Target.testTarget(
     name: "AppExtensionTests",
     dependencies: [
@@ -178,6 +202,22 @@ let appFeatureTests = Target.testTarget(
     name: "AppFeatureTests",
     dependencies: [
         appFeature
+    ]
+)
+
+let rakutenConnectorTests = Target.testTarget(
+    name: "RakutenConnectorTests",
+    dependencies: [
+        rakutenConnector,
+        mockolo
+    ]
+)
+
+let rakutenTests = Target.testTarget(
+    name: "RakutenTests",
+    dependencies: [
+        rakuten,
+        mockolo
     ]
 )
 
@@ -207,12 +247,16 @@ let package = Package.package(
         appFirebase,
         appUI,
         mockolo,
+        rakuten,
+        rakutenConnector,
+        rakutenView,
         viewComponent
     ],
     testTargets: [
         apiClientTests,
-        appConfiugrationTests,
         appExtensionTests,
-        appFeatureTests
+        appFeatureTests,
+        rakutenConnectorTests,
+        rakutenTests
     ]
 )

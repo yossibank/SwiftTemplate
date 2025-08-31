@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78AB61E02E62EF0F00228F2B /* Rakuten in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61DF2E62EF0F00228F2B /* Rakuten */; };
+		78AB61E22E62EF0F00228F2B /* RakutenConnector in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61E12E62EF0F00228F2B /* RakutenConnector */; };
+		78AB61E42E62EF0F00228F2B /* RakutenView in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61E32E62EF0F00228F2B /* RakutenView */; };
 		78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF682E59CAE900FF4A66 /* APIClient */; };
 		78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */; };
 		78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6C2E59CAE900FF4A66 /* AppExtension */; };
@@ -34,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78AB61E42E62EF0F00228F2B /* RakutenView in Frameworks */,
 				78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */,
 				78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */,
 				78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */,
@@ -41,7 +45,9 @@
 				78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */,
 				78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */,
 				78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */,
+				78AB61E22E62EF0F00228F2B /* RakutenConnector in Frameworks */,
 				78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */,
+				78AB61E02E62EF0F00228F2B /* Rakuten in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +110,9 @@
 				78C6CF982E59E55100FF4A66 /* AppUI */,
 				78C6CFAD2E5A08D200FF4A66 /* AppDebug */,
 				78C6CFB92E5A14BA00FF4A66 /* AppFirebase */,
+				78AB61DF2E62EF0F00228F2B /* Rakuten */,
+				78AB61E12E62EF0F00228F2B /* RakutenConnector */,
+				78AB61E32E62EF0F00228F2B /* RakutenView */,
 			);
 			productName = SwiftTemplate;
 			productReference = 78F93EEE2E50626700346B12 /* SwiftTemplate.app */;
@@ -549,6 +558,18 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		78AB61DF2E62EF0F00228F2B /* Rakuten */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Rakuten;
+		};
+		78AB61E12E62EF0F00228F2B /* RakutenConnector */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RakutenConnector;
+		};
+		78AB61E32E62EF0F00228F2B /* RakutenView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RakutenView;
+		};
 		78C6CF682E59CAE900FF4A66 /* APIClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = APIClient;
