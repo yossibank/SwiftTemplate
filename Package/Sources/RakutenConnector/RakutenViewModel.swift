@@ -91,7 +91,8 @@ public final class RakutenViewModel {
 private extension RakutenViewModel {
     func resetItems() {
         loadedItems = []
-        parameter = .init()
+        parameter.nextPage = 1
+        parameter.maxPage = 1
     }
 
     func updateItems(_ viewItem: RakutenViewItem) {

@@ -8,6 +8,6 @@ xcrun --sdk macosx swift build -c release \
 
 .build/checkouts/LicensePlist/.build/release/license-plist \
     --package-path Package.resolved \
-    --package-path ../SwiftTemplate.xcworkspace/xcshareddata/swiftpm/Package.resolved \
-    --output-path ../SwiftTemplate/Sources/Configuration/Plist/License/Settings.bundle \
+    --package-path ../../SwiftTemplate.xcworkspace/xcshareddata/swiftpm/Package.resolved \
+    --output-path ../App/iOS/Settings.bundle \
     --github-token $GITHUB_ACCESS_TOKEN

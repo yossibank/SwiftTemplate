@@ -1,0 +1,52 @@
+{
+  "configurations" : [
+    {
+      "id" : "AF926CD4-F6CA-442B-8ADB-F9C7086CB43C",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "AppFeatureTests",
+        "name" : "AppFeatureTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "AppExtensionTests",
+        "name" : "AppExtensionTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "APIClientTests",
+        "name" : "APIClientTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "RakutenConnectorTests",
+        "name" : "RakutenConnectorTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "RakutenTests",
+        "name" : "RakutenTests"
+      }
+    }
+  ],
+  "version" : 1
+}

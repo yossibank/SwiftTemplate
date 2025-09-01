@@ -86,6 +86,8 @@ public struct RakutenView: View {
                     message: "追加読み込み失敗"
                 )
             }
+            .navigationTitle("楽天検索")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 

@@ -27,14 +27,14 @@ platform :ios do
   end
 
   desc "検証用 Code Signing 設定"
-  lane :setting_adhoc_code_signing do
+  lane :setting_staging_code_signing do
     update_code_signing_settings(
       path: "SwiftTemplate/SwiftTemplate.xcodeproj",
       targets: "SwiftTemplate",
-      build_configurations: "AdHoc",
+      build_configurations: "Staging",
       code_sign_identity: "",
       profile_name: "",
-      bundle_identifier: "yossibank.yahoo.co.jp.SwiftTemplate.adhoc"
+      bundle_identifier: "yossibank.yahoo.co.jp.SwiftTemplate.staging"
     )
   end
 
@@ -56,8 +56,8 @@ platform :ios do
 
     gym(
       workspace: "SwiftTemplate.xcworkspace",
-      scheme: "AdHoc",
-      configuration: "AdHoc",
+      scheme: "Staging",
+      configuration: "Release",
       output_directory: "./ipa/adhoc",
       output_name: "SwiftTemplate_adhoc.ipa",
       export_method: "ad-hoc",
