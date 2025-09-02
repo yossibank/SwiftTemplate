@@ -11,16 +11,10 @@ enum BuildConfiguration {
     }
 
     static func setup() {
-        let value: AppBuild = {
-            #if DEV
-                .dev
-            #elseif ADHOC
-                .adHoc
-            #else
-                .release
-            #endif
-        }()
+        let value = Bundle.main.object(
+            forInfoDictionaryKey: "AppConfiguration"
+        ) as! String
 
-        AppBuild.value = value
+        AppBuild.value = .init(value: value.toInt)
     }
 }

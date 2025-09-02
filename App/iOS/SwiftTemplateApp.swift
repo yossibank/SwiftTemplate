@@ -20,7 +20,9 @@ struct SwiftTemplateApp: App {
         WindowGroup {
             RakutenView(viewModel: RakutenViewModel.make())
                 .onShake {
-                    isShowDebug.toggle()
+                    if !AppBuild.isRelease {
+                        isShowDebug.toggle()
+                    }
                 }
                 .sheet(isPresented: $isShowDebug) {
                     DebugView(
@@ -30,7 +32,7 @@ struct SwiftTemplateApp: App {
                     )
                 }
         }
-        .debugContainer()
+        .modelContainer(AppDebugDataContainer.container)
     }
 }
 
@@ -61,15 +63,5 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         )
 
         FirebaseAnalytics(screenID: .boot).sendEvent(.boot(date: date))
-    }
-}
-
-private extension Scene {
-    func debugContainer() -> some Scene {
-        #if DEBUG
-            modelContainer(AppDebugDataContainer.container)
-        #else
-            self
-        #endif
     }
 }

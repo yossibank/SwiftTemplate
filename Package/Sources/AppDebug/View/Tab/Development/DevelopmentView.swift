@@ -1,3 +1,4 @@
+import AppConfiguration
 import SwiftUI
 
 struct DevelopmentView: View {
@@ -9,6 +10,16 @@ struct DevelopmentView: View {
         RouterView(router: router) {
             List {
                 Section {
+                    VStack(alignment: .leading) {
+                        Text("開発環境")
+                            .bold()
+                            .font(.caption2)
+
+                        Text(AppBuild.value.title)
+                            .bold()
+                            .font(.subheadline)
+                    }
+
                     VStack(alignment: .leading) {
                         Text("アプリバージョン")
                             .bold()
