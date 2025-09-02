@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		788ECC0C2E651102004FC195 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC052E651102004FC195 /* BuildConfiguration.swift */; };
-		788ECC0D2E651102004FC195 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC062E651102004FC195 /* ContentView.swift */; };
 		788ECC0E2E651102004FC195 /* SwiftTemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC0A2E651102004FC195 /* SwiftTemplateApp.swift */; };
 		788ECC142E651102004FC195 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC082E651102004FC195 /* Settings.bundle */; };
 		788ECC1B2E651144004FC195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC182E651144004FC195 /* Assets.xcassets */; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		788ECC052E651102004FC195 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
-		788ECC062E651102004FC195 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		788ECC072E651102004FC195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788ECC082E651102004FC195 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		788ECC0A2E651102004FC195 /* SwiftTemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplateApp.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 				788ECC072E651102004FC195 /* Info.plist */,
 				788ECC082E651102004FC195 /* Settings.bundle */,
 				788ECC052E651102004FC195 /* BuildConfiguration.swift */,
-				788ECC062E651102004FC195 /* ContentView.swift */,
 				788ECC0A2E651102004FC195 /* SwiftTemplateApp.swift */,
 			);
 			path = iOS;
@@ -243,7 +240,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				788ECC0C2E651102004FC195 /* BuildConfiguration.swift in Sources */,
-				788ECC0D2E651102004FC195 /* ContentView.swift in Sources */,
 				788ECC0E2E651102004FC195 /* SwiftTemplateApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		788ECC472E651311004FC195 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC412E651311004FC195 /* ContentView.swift */; };
 		788ECC482E651311004FC195 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC402E651311004FC195 /* BuildConfiguration.swift */; };
 		788ECC492E651311004FC195 /* SwiftTemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC452E651311004FC195 /* SwiftTemplateApp.swift */; };
 		788ECC4C2E651311004FC195 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC432E651311004FC195 /* Settings.bundle */; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		788ECC402E651311004FC195 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
-		788ECC412E651311004FC195 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		788ECC422E651311004FC195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788ECC432E651311004FC195 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		788ECC452E651311004FC195 /* SwiftTemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplateApp.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 				788ECC422E651311004FC195 /* Info.plist */,
 				788ECC432E651311004FC195 /* Settings.bundle */,
 				788ECC402E651311004FC195 /* BuildConfiguration.swift */,
-				788ECC412E651311004FC195 /* ContentView.swift */,
 				788ECC452E651311004FC195 /* SwiftTemplateApp.swift */,
 			);
 			path = iOS;
@@ -242,7 +239,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				788ECC472E651311004FC195 /* ContentView.swift in Sources */,
 				788ECC482E651311004FC195 /* BuildConfiguration.swift in Sources */,
 				788ECC492E651311004FC195 /* SwiftTemplateApp.swift in Sources */,
 			);

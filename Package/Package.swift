@@ -24,11 +24,13 @@ extension Target {
         name: String,
         dependencies: [Target] = [],
         dependenciesLibraries: [Target.Dependency] = [],
+        path: String? = nil,
         resources: [Resource] = []
     ) -> Target {
         .target(
             name: name,
             dependencies: dependencies.map(\.dependency) + dependenciesLibraries,
+            path: path,
             resources: resources
         )
     }
@@ -37,11 +39,13 @@ extension Target {
         name: String,
         dependencies: [Target],
         dependenciesLibraries: [Target.Dependency] = [],
+        path: String? = nil,
         resources: [Resource] = []
     ) -> Target {
         .testTarget(
             name: name,
             dependencies: dependencies.map(\.dependency) + dependenciesLibraries,
+            path: path,
             resources: resources
         )
     }
@@ -87,11 +91,13 @@ let ohHttpStubs = Target.Dependency.product(
 // MARK: - Package
 
 let appConfiguration = Target.target(
-    name: "AppConfiguration"
+    name: "AppConfiguration",
+    path: "./Sources/Core/AppConfiguration"
 )
 
 let appExtension = Target.target(
-    name: "AppExtension"
+    name: "AppExtension",
+    path: "./Sources/Core/AppExtension"
 )
 
 let appFeature = Target.target(
@@ -99,7 +105,8 @@ let appFeature = Target.target(
     dependencies: [
         appConfiguration,
         appExtension
-    ]
+    ],
+    path: "./Sources/Core/AppFeature"
 )
 
 let appFirebase = Target.target(
@@ -110,28 +117,32 @@ let appFirebase = Target.target(
     dependenciesLibraries: [
         firebaseAnalytics,
         firebaseCrashlytics
-    ]
+    ],
+    path: "./Sources/Core/AppFirebase"
 )
 
 let appUI = Target.target(
     name: "AppUI",
     dependencies: [
         appFeature
-    ]
+    ],
+    path: "./Sources/Core/AppUI"
 )
 
 let viewComponent = Target.target(
     name: "ViewComponent",
     dependencies: [
         appUI
-    ]
+    ],
+    path: "./Sources/Core/ViewComponent"
 )
 
 let appDebug = Target.target(
     name: "AppDebug",
     dependencies: [
         viewComponent
-    ]
+    ],
+    path: "./Sources/Core/AppDebug"
 )
 
 let apiClient = Target.target(
@@ -139,7 +150,8 @@ let apiClient = Target.target(
     dependencies: [
         appDebug,
         appFeature
-    ]
+    ],
+    path: "./Sources/Core/APIClient"
 )
 
 let rakuten = Target.target(
@@ -147,14 +159,16 @@ let rakuten = Target.target(
     dependencies: [
         apiClient,
         appExtension
-    ]
+    ],
+    path: "./Sources/Feature/Rakuten"
 )
 
 let rakutenView = Target.target(
     name: "RakutenView",
     dependencies: [
         viewComponent
-    ]
+    ],
+    path: "./Sources/Feature/RakutenView"
 )
 
 let rakutenConnector = Target.target(
@@ -163,7 +177,42 @@ let rakutenConnector = Target.target(
         appFirebase,
         rakuten,
         rakutenView
-    ]
+    ],
+    path: "./Sources/Feature/RakutenConnector"
+)
+
+let core = [
+    apiClient,
+    appConfiguration,
+    appDebug,
+    appExtension,
+    appFeature,
+    appUI,
+    viewComponent
+]
+
+let feature = [
+    rakuten,
+    rakutenConnector,
+    rakutenView
+]
+
+let debug = Target.target(
+    name: "Debug",
+    dependencies: core + feature,
+    path: "./Sources/App/Debug"
+)
+
+let staging = Target.target(
+    name: "Staging",
+    dependencies: core + feature,
+    path: "./Sources/App/Staging"
+)
+
+let release = Target.target(
+    name: "Release",
+    dependencies: core + feature,
+    path: "./Sources/App/Release"
 )
 
 let mockolo = Target.target(
@@ -173,7 +222,8 @@ let mockolo = Target.target(
         appFirebase,
         rakuten,
         rakutenConnector
-    ]
+    ],
+    path: "./Mockolo"
 )
 
 // MARK: - Test Package
@@ -186,6 +236,7 @@ let apiClientTests = Target.testTarget(
     dependenciesLibraries: [
         ohHttpStubs
     ],
+    path: "./Tests/Core/APIClientTests",
     resources: [
         .process("JSON")
     ]
@@ -195,14 +246,16 @@ let appExtensionTests = Target.testTarget(
     name: "AppExtensionTests",
     dependencies: [
         appExtension
-    ]
+    ],
+    path: "./Tests/Core/AppExtensionTests"
 )
 
 let appFeatureTests = Target.testTarget(
     name: "AppFeatureTests",
     dependencies: [
         appFeature
-    ]
+    ],
+    path: "./Tests/Core/AppFeatureTests"
 )
 
 let rakutenConnectorTests = Target.testTarget(
@@ -210,7 +263,8 @@ let rakutenConnectorTests = Target.testTarget(
     dependencies: [
         rakutenConnector,
         mockolo
-    ]
+    ],
+    path: "./Tests/Feature/RakutenConnectorTests"
 )
 
 let rakutenTests = Target.testTarget(
@@ -218,7 +272,8 @@ let rakutenTests = Target.testTarget(
     dependencies: [
         rakuten,
         mockolo
-    ]
+    ],
+    path: "./Tests/Feature/RakutenTests"
 )
 
 // MARK: - Target
@@ -250,7 +305,10 @@ let package = Package.package(
         rakuten,
         rakutenConnector,
         rakutenView,
-        viewComponent
+        viewComponent,
+        debug,
+        staging,
+        release
     ],
     testTargets: [
         apiClientTests,

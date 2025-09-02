@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		788ECBD42E65053D004FC195 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 788ECBCA2E65053D004FC195 /* Settings.bundle */; };
 		788ECBD62E65053D004FC195 /* SwiftTemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECBCC2E65053D004FC195 /* SwiftTemplateApp.swift */; };
-		788ECBD72E65053D004FC195 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECBC92E65053D004FC195 /* ContentView.swift */; };
 		788ECBD82E65053D004FC195 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECBC82E65053D004FC195 /* BuildConfiguration.swift */; };
 		788ECBDC2E650592004FC195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788ECBD92E650592004FC195 /* Assets.xcassets */; };
 		788ECC582E65166D004FC195 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC572E65166D004FC195 /* GoogleService-Info.plist */; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		788ECBC82E65053D004FC195 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
-		788ECBC92E65053D004FC195 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		788ECBCA2E65053D004FC195 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		788ECBCC2E65053D004FC195 /* SwiftTemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplateApp.swift; sourceTree = "<group>"; };
 		788ECBD92E650592004FC195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Debug/Assets.xcassets; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 				788ECC5D2E651AB5004FC195 /* UnitTest.xctestplan */,
 				788ECBCA2E65053D004FC195 /* Settings.bundle */,
 				788ECBC82E65053D004FC195 /* BuildConfiguration.swift */,
-				788ECBC92E65053D004FC195 /* ContentView.swift */,
 				788ECBCC2E65053D004FC195 /* SwiftTemplateApp.swift */,
 			);
 			path = iOS;
@@ -241,7 +238,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				788ECBD62E65053D004FC195 /* SwiftTemplateApp.swift in Sources */,
-				788ECBD72E65053D004FC195 /* ContentView.swift in Sources */,
 				788ECBD82E65053D004FC195 /* BuildConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

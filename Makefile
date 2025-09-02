@@ -34,7 +34,7 @@ update-package:
 
 .PHONY: generate-mock
 generate-mock:
-	sh ./script/setting/mockolo.sh
+	zsh ./script/setting/mockolo.sh
 
 .PHONY: run-format
 run-format:

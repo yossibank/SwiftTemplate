@@ -1,19 +1,25 @@
-targets=(
-    "APIClient"
-	"AppFirebase"
-	"Rakuten"
-	"RakutenConnector"
+#!/bin/zsh
+
+typeset -A target_paths
+
+target_paths=(
+	APIClient "Package/Sources/Core/APIClient"
+	AppFirebase "Package/Sources/Core/AppFirebase"
+	Rakuten "Package/Sources/Feature/Rakuten"
+	RakutenConnector "Package/Sources/Feature/RakutenConnector"
 )
 
-for target in "${targets[@]}"; do
-    generated_folder="Package/Sources/Mockolo/Generated"
+generated_folder="Package/Mockolo/Generated"
 
-    if [ ! -d "$generated_folder" ]; then
-		mkdir -p "$generated_folder"
-	fi
+if [ ! -d "$generated_folder" ]; then
+	mkdir -p "$generated_folder"
+fi
 
-	mint run mockolo mockolo --sourcedirs Package/Sources/$target \
-		--destination Package/Sources/Mockolo/Generated/${target}Mock.swift \
-		--testable-imports ${target} \
-		--mock-final
+for target source_dir in ${(kv)target_paths}; do
+    mint run mockolo mockolo \
+        --sourcedirs "$source_dir" \
+        --destination "$generated_folder/${target}Mock.swift" \
+        --testable-imports "$target" \
+        --mock-final
 done
+
