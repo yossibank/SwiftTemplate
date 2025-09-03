@@ -197,22 +197,28 @@ let feature = [
     rakutenView
 ]
 
-let debug = Target.target(
-    name: "Debug",
+let environment = Target.target(
+    name: "Environment",
     dependencies: core + feature,
-    path: "./Sources/App/Debug"
+    path: "./Sources/App/Environment"
+)
+
+let debug = Target.target(
+    name: "DebugApp",
+    dependencies: core + feature + [environment],
+    path: "./Sources/App/Root/Debug"
 )
 
 let staging = Target.target(
-    name: "Staging",
-    dependencies: core + feature,
-    path: "./Sources/App/Staging"
+    name: "StagingApp",
+    dependencies: core + feature + [environment],
+    path: "./Sources/App/Root/Staging"
 )
 
 let release = Target.target(
-    name: "Release",
-    dependencies: core + feature,
-    path: "./Sources/App/Release"
+    name: "ReleaseApp",
+    dependencies: core + feature + [environment],
+    path: "./Sources/App/Root/Release"
 )
 
 let mockolo = Target.target(
@@ -301,14 +307,15 @@ let package = Package.package(
         appFeature,
         appFirebase,
         appUI,
-        mockolo,
+        viewComponent,
         rakuten,
         rakutenConnector,
         rakutenView,
-        viewComponent,
+        environment,
         debug,
         staging,
-        release
+        release,
+        mockolo
     ],
     testTargets: [
         apiClientTests,

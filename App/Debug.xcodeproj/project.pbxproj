@@ -8,31 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		788ECBD42E65053D004FC195 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 788ECBCA2E65053D004FC195 /* Settings.bundle */; };
-		788ECBD62E65053D004FC195 /* SwiftTemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECBCC2E65053D004FC195 /* SwiftTemplateApp.swift */; };
-		788ECBD82E65053D004FC195 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECBC82E65053D004FC195 /* BuildConfiguration.swift */; };
 		788ECBDC2E650592004FC195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788ECBD92E650592004FC195 /* Assets.xcassets */; };
 		788ECC582E65166D004FC195 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC572E65166D004FC195 /* GoogleService-Info.plist */; };
-		78AB61E02E62EF0F00228F2B /* Rakuten in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61DF2E62EF0F00228F2B /* Rakuten */; };
-		78AB61E22E62EF0F00228F2B /* RakutenConnector in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61E12E62EF0F00228F2B /* RakutenConnector */; };
-		78AB61E42E62EF0F00228F2B /* RakutenView in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61E32E62EF0F00228F2B /* RakutenView */; };
-		78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF682E59CAE900FF4A66 /* APIClient */; };
-		78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */; };
-		78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6C2E59CAE900FF4A66 /* AppExtension */; };
-		78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6E2E59CAE900FF4A66 /* AppFeature */; };
-		78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF962E59E54E00FF4A66 /* ViewComponent */; };
-		78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF982E59E55100FF4A66 /* AppUI */; };
-		78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFAD2E5A08D200FF4A66 /* AppDebug */; };
-		78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFB92E5A14BA00FF4A66 /* AppFirebase */; };
+		78B755402E67CC5700D76C77 /* DebugApp in Frameworks */ = {isa = PBXBuildFile; productRef = 78B7553F2E67CC5700D76C77 /* DebugApp */; };
+		78B755422E67D01B00D76C77 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B755412E67D01B00D76C77 /* App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		788ECBC82E65053D004FC195 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
 		788ECBCA2E65053D004FC195 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		788ECBCC2E65053D004FC195 /* SwiftTemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplateApp.swift; sourceTree = "<group>"; };
 		788ECBD92E650592004FC195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Debug/Assets.xcassets; sourceTree = "<group>"; };
 		788ECBDF2E650B32004FC195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788ECC572E65166D004FC195 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Debug/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		788ECC5D2E651AB5004FC195 /* UnitTest.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTest.xctestplan; sourceTree = "<group>"; };
+		78B755412E67D01B00D76C77 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = App.swift; path = Debug/App.swift; sourceTree = "<group>"; };
 		78F93EEE2E50626700346B12 /* Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -41,17 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78AB61E42E62EF0F00228F2B /* RakutenView in Frameworks */,
-				78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */,
-				78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */,
-				78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */,
-				78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */,
-				78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */,
-				78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */,
-				78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */,
-				78AB61E22E62EF0F00228F2B /* RakutenConnector in Frameworks */,
-				78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */,
-				78AB61E02E62EF0F00228F2B /* Rakuten in Frameworks */,
+				78B755402E67CC5700D76C77 /* DebugApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,21 +39,28 @@
 		788ECBCD2E65053D004FC195 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				78B755412E67D01B00D76C77 /* App.swift */,
 				788ECBD92E650592004FC195 /* Assets.xcassets */,
 				788ECC572E65166D004FC195 /* GoogleService-Info.plist */,
 				788ECBDF2E650B32004FC195 /* Info.plist */,
 				788ECC5D2E651AB5004FC195 /* UnitTest.xctestplan */,
 				788ECBCA2E65053D004FC195 /* Settings.bundle */,
-				788ECBC82E65053D004FC195 /* BuildConfiguration.swift */,
-				788ECBCC2E65053D004FC195 /* SwiftTemplateApp.swift */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		78B7553C2E67CBFA00D76C77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		78F93EE52E50626700346B12 = {
 			isa = PBXGroup;
 			children = (
 				788ECBCD2E65053D004FC195 /* iOS */,
+				78B7553C2E67CBFA00D76C77 /* Frameworks */,
 				78F93EEF2E50626700346B12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,17 +93,7 @@
 			);
 			name = Debug;
 			packageProductDependencies = (
-				78C6CF682E59CAE900FF4A66 /* APIClient */,
-				78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */,
-				78C6CF6C2E59CAE900FF4A66 /* AppExtension */,
-				78C6CF6E2E59CAE900FF4A66 /* AppFeature */,
-				78C6CF962E59E54E00FF4A66 /* ViewComponent */,
-				78C6CF982E59E55100FF4A66 /* AppUI */,
-				78C6CFAD2E5A08D200FF4A66 /* AppDebug */,
-				78C6CFB92E5A14BA00FF4A66 /* AppFirebase */,
-				78AB61DF2E62EF0F00228F2B /* Rakuten */,
-				78AB61E12E62EF0F00228F2B /* RakutenConnector */,
-				78AB61E32E62EF0F00228F2B /* RakutenView */,
+				78B7553F2E67CC5700D76C77 /* DebugApp */,
 			);
 			productName = SwiftTemplate;
 			productReference = 78F93EEE2E50626700346B12 /* Debug.app */;
@@ -237,8 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				788ECBD62E65053D004FC195 /* SwiftTemplateApp.swift in Sources */,
-				788ECBD82E65053D004FC195 /* BuildConfiguration.swift in Sources */,
+				78B755422E67D01B00D76C77 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,49 +340,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		78AB61DF2E62EF0F00228F2B /* Rakuten */ = {
+		78B7553F2E67CC5700D76C77 /* DebugApp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Rakuten;
-		};
-		78AB61E12E62EF0F00228F2B /* RakutenConnector */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RakutenConnector;
-		};
-		78AB61E32E62EF0F00228F2B /* RakutenView */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RakutenView;
-		};
-		78C6CF682E59CAE900FF4A66 /* APIClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = APIClient;
-		};
-		78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppConfiguration;
-		};
-		78C6CF6C2E59CAE900FF4A66 /* AppExtension */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppExtension;
-		};
-		78C6CF6E2E59CAE900FF4A66 /* AppFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppFeature;
-		};
-		78C6CF962E59E54E00FF4A66 /* ViewComponent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ViewComponent;
-		};
-		78C6CF982E59E55100FF4A66 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
-		78C6CFAD2E5A08D200FF4A66 /* AppDebug */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppDebug;
-		};
-		78C6CFB92E5A14BA00FF4A66 /* AppFirebase */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppFirebase;
+			productName = DebugApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

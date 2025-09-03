@@ -1,8 +1,8 @@
 import AppConfiguration
 import Foundation
 
-enum BuildConfiguration {
-    static var version: String {
+public enum AppEnvironment {
+    public static var version: String {
         guard let info = Bundle.main.infoDictionary else {
             return ""
         }

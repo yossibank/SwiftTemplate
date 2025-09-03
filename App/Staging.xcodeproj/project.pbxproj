@@ -7,31 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		788ECC0C2E651102004FC195 /* BuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC052E651102004FC195 /* BuildConfiguration.swift */; };
-		788ECC0E2E651102004FC195 /* SwiftTemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788ECC0A2E651102004FC195 /* SwiftTemplateApp.swift */; };
 		788ECC142E651102004FC195 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC082E651102004FC195 /* Settings.bundle */; };
 		788ECC1B2E651144004FC195 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC182E651144004FC195 /* Assets.xcassets */; };
 		788ECC5A2E6516DC004FC195 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 788ECC592E6516DC004FC195 /* GoogleService-Info.plist */; };
-		78AB61E02E62EF0F00228F2B /* Rakuten in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61DF2E62EF0F00228F2B /* Rakuten */; };
-		78AB61E22E62EF0F00228F2B /* RakutenConnector in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61E12E62EF0F00228F2B /* RakutenConnector */; };
-		78AB61E42E62EF0F00228F2B /* RakutenView in Frameworks */ = {isa = PBXBuildFile; productRef = 78AB61E32E62EF0F00228F2B /* RakutenView */; };
-		78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF682E59CAE900FF4A66 /* APIClient */; };
-		78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */; };
-		78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6C2E59CAE900FF4A66 /* AppExtension */; };
-		78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF6E2E59CAE900FF4A66 /* AppFeature */; };
-		78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF962E59E54E00FF4A66 /* ViewComponent */; };
-		78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CF982E59E55100FF4A66 /* AppUI */; };
-		78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFAD2E5A08D200FF4A66 /* AppDebug */; };
-		78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = 78C6CFB92E5A14BA00FF4A66 /* AppFirebase */; };
+		78B755442E67D03400D76C77 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B755432E67D03400D76C77 /* App.swift */; };
+		78B755492E67D08600D76C77 /* StagingApp in Frameworks */ = {isa = PBXBuildFile; productRef = 78B755482E67D08600D76C77 /* StagingApp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		788ECC052E651102004FC195 /* BuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfiguration.swift; sourceTree = "<group>"; };
 		788ECC072E651102004FC195 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		788ECC082E651102004FC195 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		788ECC0A2E651102004FC195 /* SwiftTemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplateApp.swift; sourceTree = "<group>"; };
 		788ECC182E651144004FC195 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Staging/Assets.xcassets; sourceTree = "<group>"; };
 		788ECC592E6516DC004FC195 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Staging/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78B755432E67D03400D76C77 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = App.swift; path = Staging/App.swift; sourceTree = "<group>"; };
 		78F93EEE2E50626700346B12 /* Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -40,17 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78AB61E42E62EF0F00228F2B /* RakutenView in Frameworks */,
-				78C6CF992E59E55100FF4A66 /* AppUI in Frameworks */,
-				78C6CF972E59E54E00FF4A66 /* ViewComponent in Frameworks */,
-				78C6CF692E59CAE900FF4A66 /* APIClient in Frameworks */,
-				78C6CF6D2E59CAE900FF4A66 /* AppExtension in Frameworks */,
-				78C6CFAE2E5A08D200FF4A66 /* AppDebug in Frameworks */,
-				78C6CFBA2E5A14BA00FF4A66 /* AppFirebase in Frameworks */,
-				78C6CF6B2E59CAE900FF4A66 /* AppConfiguration in Frameworks */,
-				78AB61E22E62EF0F00228F2B /* RakutenConnector in Frameworks */,
-				78C6CF6F2E59CAE900FF4A66 /* AppFeature in Frameworks */,
-				78AB61E02E62EF0F00228F2B /* Rakuten in Frameworks */,
+				78B755492E67D08600D76C77 /* StagingApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,20 +38,27 @@
 		788ECC0B2E651102004FC195 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				78B755432E67D03400D76C77 /* App.swift */,
 				788ECC182E651144004FC195 /* Assets.xcassets */,
 				788ECC592E6516DC004FC195 /* GoogleService-Info.plist */,
 				788ECC072E651102004FC195 /* Info.plist */,
 				788ECC082E651102004FC195 /* Settings.bundle */,
-				788ECC052E651102004FC195 /* BuildConfiguration.swift */,
-				788ECC0A2E651102004FC195 /* SwiftTemplateApp.swift */,
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		78B755472E67D08600D76C77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		78F93EE52E50626700346B12 = {
 			isa = PBXGroup;
 			children = (
 				788ECC0B2E651102004FC195 /* iOS */,
+				78B755472E67D08600D76C77 /* Frameworks */,
 				78F93EEF2E50626700346B12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,17 +91,7 @@
 			);
 			name = Staging;
 			packageProductDependencies = (
-				78C6CF682E59CAE900FF4A66 /* APIClient */,
-				78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */,
-				78C6CF6C2E59CAE900FF4A66 /* AppExtension */,
-				78C6CF6E2E59CAE900FF4A66 /* AppFeature */,
-				78C6CF962E59E54E00FF4A66 /* ViewComponent */,
-				78C6CF982E59E55100FF4A66 /* AppUI */,
-				78C6CFAD2E5A08D200FF4A66 /* AppDebug */,
-				78C6CFB92E5A14BA00FF4A66 /* AppFirebase */,
-				78AB61DF2E62EF0F00228F2B /* Rakuten */,
-				78AB61E12E62EF0F00228F2B /* RakutenConnector */,
-				78AB61E32E62EF0F00228F2B /* RakutenView */,
+				78B755482E67D08600D76C77 /* StagingApp */,
 			);
 			productName = SwiftTemplate;
 			productReference = 78F93EEE2E50626700346B12 /* Staging.app */;
@@ -134,6 +109,7 @@
 				TargetAttributes = {
 					78F93EED2E50626700346B12 = {
 						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
 					};
 				};
 			};
@@ -239,8 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				788ECC0C2E651102004FC195 /* BuildConfiguration.swift in Sources */,
-				788ECC0E2E651102004FC195 /* SwiftTemplateApp.swift in Sources */,
+				78B755442E67D03400D76C77 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +349,7 @@
 				APP_CONFIGURATION = 2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -396,6 +372,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEV $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,6 +384,7 @@
 				APP_CONFIGURATION = 2;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WHPY5MQSB;
@@ -457,49 +435,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		78AB61DF2E62EF0F00228F2B /* Rakuten */ = {
+		78B755482E67D08600D76C77 /* StagingApp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Rakuten;
-		};
-		78AB61E12E62EF0F00228F2B /* RakutenConnector */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RakutenConnector;
-		};
-		78AB61E32E62EF0F00228F2B /* RakutenView */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RakutenView;
-		};
-		78C6CF682E59CAE900FF4A66 /* APIClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = APIClient;
-		};
-		78C6CF6A2E59CAE900FF4A66 /* AppConfiguration */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppConfiguration;
-		};
-		78C6CF6C2E59CAE900FF4A66 /* AppExtension */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppExtension;
-		};
-		78C6CF6E2E59CAE900FF4A66 /* AppFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppFeature;
-		};
-		78C6CF962E59E54E00FF4A66 /* ViewComponent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ViewComponent;
-		};
-		78C6CF982E59E55100FF4A66 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
-		78C6CFAD2E5A08D200FF4A66 /* AppDebug */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppDebug;
-		};
-		78C6CFB92E5A14BA00FF4A66 /* AppFirebase */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppFirebase;
+			productName = StagingApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

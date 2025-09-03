@@ -27,7 +27,7 @@ public enum AppConfiguration {
         }
 
         public static var isLogging: Bool {
-            isDebug && !isTesting
+            !isRelease && !isTesting
         }
 
         public var title: String {
