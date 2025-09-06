@@ -1,4 +1,3 @@
-import AppUI
 import SwiftUI
 import ViewComponent
 
@@ -45,7 +44,7 @@ struct APIResponseBodyView: View {
 }
 
 #Preview {
-    ContainerViewPreview(container: AppDebugDataContainer.container) {
+    ContainerViewPreview(container: DebugMenuDataContainer.container) {
         APIResponseBodyView(
             model: .mock,
             mode: .request

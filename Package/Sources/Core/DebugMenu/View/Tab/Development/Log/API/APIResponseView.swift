@@ -1,6 +1,5 @@
 import AppExtension
 import AppFoundation
-import AppUI
 import SwiftUI
 import ViewComponent
 
@@ -97,7 +96,7 @@ struct APIResponseView: View {
 }
 
 #Preview {
-    ContainerViewPreview(container: AppDebugDataContainer.container) {
+    ContainerViewPreview(container: DebugMenuDataContainer.container) {
         APIResponseView(model: .mock)
             .padding()
     }

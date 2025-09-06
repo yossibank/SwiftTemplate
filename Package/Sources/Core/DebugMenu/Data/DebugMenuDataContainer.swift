@@ -3,7 +3,7 @@ import Foundation
 import SwiftData
 
 @MainActor
-public enum AppDebugDataContainer {
+public enum DebugMenuDataContainer {
     public static let container: ModelContainer = {
         let schema = Schema([
             APIModel.self
@@ -55,7 +55,7 @@ public enum AppDebugDataContainer {
 
 // MARK: - preview
 
-extension AppDebugDataContainer {
+extension DebugMenuDataContainer {
     static let previewContainer: ModelContainer = {
         for i in 1...5 {
             container.mainContext.insert(

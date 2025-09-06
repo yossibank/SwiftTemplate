@@ -1,6 +1,5 @@
 import AppExtension
 import AppFoundation
-import AppUI
 import SwiftUI
 import ViewComponent
 
@@ -182,7 +181,7 @@ struct APIResponseDetailView: View {
 }
 
 #Preview {
-    ContainerViewPreview(container: AppDebugDataContainer.container) {
+    ContainerViewPreview(container: DebugMenuDataContainer.container) {
         RouterView(router: Router()) {
             APIResponseDetailView(model: .mock)
         }

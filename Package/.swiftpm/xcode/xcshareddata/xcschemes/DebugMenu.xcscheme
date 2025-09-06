@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AppDebug"
-               BuildableName = "AppDebug"
-               BlueprintName = "AppDebug"
+               BlueprintIdentifier = "DebugMenu"
+               BuildableName = "DebugMenu"
+               BlueprintName = "DebugMenu"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AppDebug"
-            BuildableName = "AppDebug"
-            BlueprintName = "AppDebug"
+            BlueprintIdentifier = "DebugMenu"
+            BuildableName = "DebugMenu"
+            BlueprintName = "DebugMenu"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

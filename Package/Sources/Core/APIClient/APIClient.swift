@@ -1,4 +1,4 @@
-import AppDebug
+import DebugMenu
 import Foundation
 
 /// @mockable
@@ -88,7 +88,7 @@ private extension APIClient {
         urlResponse: HTTPURLResponse,
         queryItems: [URLQueryItem]?
     ) async {
-        await AppDebugDataContainer.interceptor(
+        await DebugMenuDataContainer.interceptor(
             .init(
                 data: data,
                 errorDescription: nil,
@@ -105,7 +105,7 @@ private extension APIClient {
         urlRequest: URLRequest,
         queryItems: [URLQueryItem]?
     ) async {
-        await AppDebugDataContainer.interceptor(
+        await DebugMenuDataContainer.interceptor(
             .init(
                 data: nil,
                 errorDescription: apiError.errorDescription,

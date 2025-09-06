@@ -1,4 +1,4 @@
-import AppDebug
+import DebugMenu
 import Environment
 import RakutenConnector
 import RakutenView

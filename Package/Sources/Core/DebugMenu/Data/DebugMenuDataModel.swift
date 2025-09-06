@@ -1,4 +1,4 @@
-public struct AppDebugDataModel {
+public struct DebugMenuDataModel {
     public let appVersion: String
 
     public init(appVersion: String) {

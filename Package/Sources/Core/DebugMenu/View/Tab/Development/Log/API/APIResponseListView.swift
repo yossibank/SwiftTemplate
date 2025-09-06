@@ -23,6 +23,6 @@ struct APIResponseListView: View {
 #Preview {
     RouterView(router: Router()) {
         APIResponseListView()
-            .modelContainer(AppDebugDataContainer.previewContainer)
+            .modelContainer(DebugMenuDataContainer.previewContainer)
     }
 }

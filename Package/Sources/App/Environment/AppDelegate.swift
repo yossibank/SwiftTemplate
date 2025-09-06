@@ -1,5 +1,5 @@
-import AppDebug
 import AppFoundation
+import DebugMenu
 import FirebaseLive
 import SwiftUI
 import UIKit
@@ -37,6 +37,6 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
 @MainActor
 public extension WindowGroup {
     func debugContainer() -> some Scene {
-        modelContainer(AppDebugDataContainer.container)
+        modelContainer(DebugMenuDataContainer.container)
     }
 }

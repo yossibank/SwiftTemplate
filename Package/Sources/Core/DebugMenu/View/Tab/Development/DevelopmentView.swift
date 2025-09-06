@@ -2,7 +2,7 @@ import AppFoundation
 import SwiftUI
 
 struct DevelopmentView: View {
-    let dataModel: AppDebugDataModel
+    let dataModel: DebugMenuDataModel
 
     private let router = Router()
 
@@ -61,5 +61,5 @@ struct DevelopmentView: View {
 
 #Preview {
     DevelopmentView(dataModel: .init(appVersion: "1.0.0"))
-        .modelContainer(AppDebugDataContainer.previewContainer)
+        .modelContainer(DebugMenuDataContainer.previewContainer)
 }

@@ -1,8 +1,9 @@
-import AppDebug
+import DebugMenu
 import Environment
 import RakutenConnector
 import RakutenView
 import SwiftUI
+import ViewComponent
 
 public struct DebugRootView: View {
     @State private var isShowDebug = false

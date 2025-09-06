@@ -1,5 +1,4 @@
 import AppExtension
-import AppUI
 import SwiftUI
 import ViewComponent
 

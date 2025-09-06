@@ -1,9 +1,9 @@
 import SwiftUI
 
 public struct DebugView: View {
-    private let dataModel: AppDebugDataModel
+    private let dataModel: DebugMenuDataModel
 
-    public init(dataModel: AppDebugDataModel) {
+    public init(dataModel: DebugMenuDataModel) {
         self.dataModel = dataModel
     }
 
@@ -23,5 +23,5 @@ public struct DebugView: View {
 
 #Preview {
     DebugView(dataModel: .init(appVersion: "1.0.0"))
-        .modelContainer(AppDebugDataContainer.previewContainer)
+        .modelContainer(DebugMenuDataContainer.previewContainer)
 }

@@ -103,35 +103,24 @@ let appFoundation = Target.target(
     path: "./Sources/Core/AppFoundation"
 )
 
-let appUI = Target.target(
-    name: "AppUI",
-    dependencies: [
-        appFoundation
-    ],
-    path: "./Sources/Core/AppUI"
-)
-
 let viewComponent = Target.target(
     name: "ViewComponent",
-    dependencies: [
-        appUI
-    ],
     path: "./Sources/Core/ViewComponent"
 )
 
-let appDebug = Target.target(
-    name: "AppDebug",
+let debugMenu = Target.target(
+    name: "DebugMenu",
     dependencies: [
         viewComponent
     ],
-    path: "./Sources/Core/AppDebug"
+    path: "./Sources/Core/DebugMenu"
 )
 
 let apiClient = Target.target(
     name: "APIClient",
     dependencies: [
-        appDebug,
-        appFoundation
+        appFoundation,
+        debugMenu
     ],
     path: "./Sources/Core/APIClient"
 )
@@ -177,10 +166,9 @@ let rakutenConnector = Target.target(
 
 let core = [
     apiClient,
-    appDebug,
     appExtension,
     appFoundation,
-    appUI,
+    debugMenu,
     viewComponent
 ]
 
@@ -294,10 +282,9 @@ let package = Package.package(
     ],
     targets: [
         apiClient,
-        appDebug,
         appExtension,
         appFoundation,
-        appUI,
+        debugMenu,
         firebaseLive,
         viewComponent,
         rakuten,
