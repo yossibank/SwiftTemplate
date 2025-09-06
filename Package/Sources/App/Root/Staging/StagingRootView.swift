@@ -1,6 +1,6 @@
 import DebugMenu
 import Environment
-import RakutenConnector
+import Rakuten
 import RakutenView
 import SwiftUI
 

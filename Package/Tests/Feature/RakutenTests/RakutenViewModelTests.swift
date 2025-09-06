@@ -1,7 +1,6 @@
 import AppFoundation
 @testable import Mockolo
 @testable import Rakuten
-@testable import RakutenConnector
 @testable import RakutenView
 import Testing
 

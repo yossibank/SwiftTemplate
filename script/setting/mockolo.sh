@@ -6,7 +6,7 @@ target_paths=(
 	APIClient "Package/Sources/Core/APIClient"
 	FirebaseLive "Package/Sources/Core/FirebaseLive"
 	Rakuten "Package/Sources/Feature/Rakuten"
-	RakutenConnector "Package/Sources/Feature/RakutenConnector"
+	RakutenView "Package/Sources/Feature/RakutenView"
 )
 
 generated_folder="Package/Mockolo/Generated"

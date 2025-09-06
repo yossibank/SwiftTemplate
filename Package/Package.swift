@@ -116,15 +116,6 @@ let debugMenu = Target.target(
     path: "./Sources/Core/DebugMenu"
 )
 
-let apiClient = Target.target(
-    name: "APIClient",
-    dependencies: [
-        appFoundation,
-        debugMenu
-    ],
-    path: "./Sources/Core/APIClient"
-)
-
 let firebaseLive = Target.target(
     name: "FirebaseLive",
     dependencies: [
@@ -137,31 +128,32 @@ let firebaseLive = Target.target(
     path: "./Sources/Core/Firebaselive"
 )
 
-let rakuten = Target.target(
-    name: "Rakuten",
+let apiClient = Target.target(
+    name: "APIClient",
     dependencies: [
-        apiClient,
-        appExtension
+        appFoundation,
+        debugMenu
     ],
-    path: "./Sources/Feature/Rakuten"
+    path: "./Sources/Core/APIClient"
 )
 
 let rakutenView = Target.target(
     name: "RakutenView",
     dependencies: [
+        appFoundation,
         viewComponent
     ],
     path: "./Sources/Feature/RakutenView"
 )
 
-let rakutenConnector = Target.target(
-    name: "RakutenConnector",
+let rakuten = Target.target(
+    name: "Rakuten",
     dependencies: [
+        apiClient,
         firebaseLive,
-        rakuten,
         rakutenView
     ],
-    path: "./Sources/Feature/RakutenConnector"
+    path: "./Sources/Feature/Rakuten"
 )
 
 let core = [
@@ -174,7 +166,6 @@ let core = [
 
 let feature = [
     rakuten,
-    rakutenConnector,
     rakutenView
 ]
 
@@ -207,8 +198,7 @@ let mockolo = Target.target(
     dependencies: [
         apiClient,
         firebaseLive,
-        rakuten,
-        rakutenConnector
+        rakuten
     ],
     path: "./Mockolo"
 )
@@ -245,15 +235,6 @@ let appFoundationTests = Target.testTarget(
     path: "./Tests/Core/AppFoundationTests"
 )
 
-let rakutenConnectorTests = Target.testTarget(
-    name: "RakutenConnectorTests",
-    dependencies: [
-        rakutenConnector,
-        mockolo
-    ],
-    path: "./Tests/Feature/RakutenConnectorTests"
-)
-
 let rakutenTests = Target.testTarget(
     name: "RakutenTests",
     dependencies: [
@@ -288,7 +269,6 @@ let package = Package.package(
         firebaseLive,
         viewComponent,
         rakuten,
-        rakutenConnector,
         rakutenView,
         environment,
         debug,
@@ -300,7 +280,6 @@ let package = Package.package(
         apiClientTests,
         appExtensionTests,
         appFoundationTests,
-        rakutenConnectorTests,
         rakutenTests
     ]
 )

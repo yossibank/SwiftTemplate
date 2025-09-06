@@ -1,5 +1,4 @@
 @testable import Rakuten
-@testable import RakutenConnector
 @testable import RakutenView
 import Testing
 

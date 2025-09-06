@@ -1,10 +1,8 @@
 import AppFoundation
 import FirebaseLive
 import Foundation
-import Rakuten
 import RakutenView
 
-@MainActor
 @Observable
 public final class RakutenViewModel {
     public struct Dependency: Sendable {

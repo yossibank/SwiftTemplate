@@ -39,13 +39,6 @@
         "identifier" : "RakutenTests",
         "name" : "RakutenTests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/Package",
-        "identifier" : "RakutenConnectorTests",
-        "name" : "RakutenConnectorTests"
-      }
     }
   ],
   "version" : 1

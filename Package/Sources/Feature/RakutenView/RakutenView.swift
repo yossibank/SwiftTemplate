@@ -1,4 +1,5 @@
 import AppExtension
+import AppFoundation
 import SwiftUI
 import ViewComponent
 
@@ -154,4 +155,8 @@ public struct RakutenView: View {
             }
         }
     }
+}
+
+#Preview {
+    RakutenView(viewModel: RakutenViewModelMock())
 }

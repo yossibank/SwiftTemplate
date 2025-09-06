@@ -1,4 +1,4 @@
-import RakutenConnector
+import Rakuten
 import RakutenView
 import SwiftUI
 

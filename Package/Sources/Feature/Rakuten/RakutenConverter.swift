@@ -1,5 +1,4 @@
 import AppFoundation
-import Rakuten
 import RakutenView
 
 /// @mockable
