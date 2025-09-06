@@ -90,41 +90,23 @@ let ohHttpStubs = Target.Dependency.product(
 
 // MARK: - Package
 
-let appConfiguration = Target.target(
-    name: "AppConfiguration",
-    path: "./Sources/Core/AppConfiguration"
-)
-
 let appExtension = Target.target(
     name: "AppExtension",
     path: "./Sources/Core/AppExtension"
 )
 
-let appFeature = Target.target(
-    name: "AppFeature",
+let appFoundation = Target.target(
+    name: "AppFoundation",
     dependencies: [
-        appConfiguration,
         appExtension
     ],
-    path: "./Sources/Core/AppFeature"
-)
-
-let appFirebase = Target.target(
-    name: "AppFirebase",
-    dependencies: [
-        appFeature
-    ],
-    dependenciesLibraries: [
-        firebaseAnalytics,
-        firebaseCrashlytics
-    ],
-    path: "./Sources/Core/AppFirebase"
+    path: "./Sources/Core/AppFoundation"
 )
 
 let appUI = Target.target(
     name: "AppUI",
     dependencies: [
-        appFeature
+        appFoundation
     ],
     path: "./Sources/Core/AppUI"
 )
@@ -149,9 +131,21 @@ let apiClient = Target.target(
     name: "APIClient",
     dependencies: [
         appDebug,
-        appFeature
+        appFoundation
     ],
     path: "./Sources/Core/APIClient"
+)
+
+let firebaseLive = Target.target(
+    name: "FirebaseLive",
+    dependencies: [
+        appFoundation
+    ],
+    dependenciesLibraries: [
+        firebaseAnalytics,
+        firebaseCrashlytics
+    ],
+    path: "./Sources/Core/Firebaselive"
 )
 
 let rakuten = Target.target(
@@ -174,7 +168,7 @@ let rakutenView = Target.target(
 let rakutenConnector = Target.target(
     name: "RakutenConnector",
     dependencies: [
-        appFirebase,
+        firebaseLive,
         rakuten,
         rakutenView
     ],
@@ -183,10 +177,9 @@ let rakutenConnector = Target.target(
 
 let core = [
     apiClient,
-    appConfiguration,
     appDebug,
     appExtension,
-    appFeature,
+    appFoundation,
     appUI,
     viewComponent
 ]
@@ -225,7 +218,7 @@ let mockolo = Target.target(
     name: "Mockolo",
     dependencies: [
         apiClient,
-        appFirebase,
+        firebaseLive,
         rakuten,
         rakutenConnector
     ],
@@ -256,12 +249,12 @@ let appExtensionTests = Target.testTarget(
     path: "./Tests/Core/AppExtensionTests"
 )
 
-let appFeatureTests = Target.testTarget(
-    name: "AppFeatureTests",
+let appFoundationTests = Target.testTarget(
+    name: "AppFoundationTests",
     dependencies: [
-        appFeature
+        appFoundation
     ],
-    path: "./Tests/Core/AppFeatureTests"
+    path: "./Tests/Core/AppFoundationTests"
 )
 
 let rakutenConnectorTests = Target.testTarget(
@@ -301,12 +294,11 @@ let package = Package.package(
     ],
     targets: [
         apiClient,
-        appConfiguration,
         appDebug,
         appExtension,
-        appFeature,
-        appFirebase,
+        appFoundation,
         appUI,
+        firebaseLive,
         viewComponent,
         rakuten,
         rakutenConnector,
@@ -320,7 +312,7 @@ let package = Package.package(
     testTargets: [
         apiClientTests,
         appExtensionTests,
-        appFeatureTests,
+        appFoundationTests,
         rakutenConnectorTests,
         rakutenTests
     ]

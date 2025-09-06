@@ -15,8 +15,8 @@
     {
       "target" : {
         "containerPath" : "container:..\/Package",
-        "identifier" : "AppFeatureTests",
-        "name" : "AppFeatureTests"
+        "identifier" : "APIClientTests",
+        "name" : "APIClientTests"
       }
     },
     {
@@ -29,15 +29,8 @@
     {
       "target" : {
         "containerPath" : "container:..\/Package",
-        "identifier" : "APIClientTests",
-        "name" : "APIClientTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:..\/Package",
-        "identifier" : "RakutenConnectorTests",
-        "name" : "RakutenConnectorTests"
+        "identifier" : "AppFoundationTests",
+        "name" : "AppFoundationTests"
       }
     },
     {
@@ -45,6 +38,13 @@
         "containerPath" : "container:..\/Package",
         "identifier" : "RakutenTests",
         "name" : "RakutenTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Package",
+        "identifier" : "RakutenConnectorTests",
+        "name" : "RakutenConnectorTests"
       }
     }
   ],

@@ -1,4 +1,3 @@
-import AppConfiguration
 import Foundation
 import os
 
@@ -43,7 +42,7 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
-        guard !AppBuild.isRelease else {
+        guard !AppConfiguration.isRelease else {
             return
         }
 

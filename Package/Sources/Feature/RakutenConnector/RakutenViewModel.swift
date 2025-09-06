@@ -1,5 +1,5 @@
-import AppFeature
-import AppFirebase
+import AppFoundation
+import FirebaseLive
 import Foundation
 import Rakuten
 import RakutenView

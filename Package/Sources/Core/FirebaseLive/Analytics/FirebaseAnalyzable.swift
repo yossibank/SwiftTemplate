@@ -1,4 +1,4 @@
-import AppFeature
+import AppFoundation
 
 /// @mockable
 public protocol FirebaseAnalyzable: Sendable {

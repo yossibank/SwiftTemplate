@@ -1,4 +1,4 @@
-import AppFeature
+import AppFoundation
 import Foundation
 
 public enum APIError: Error, Equatable {

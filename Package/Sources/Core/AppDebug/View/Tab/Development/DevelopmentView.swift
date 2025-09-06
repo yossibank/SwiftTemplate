@@ -1,4 +1,4 @@
-import AppConfiguration
+import AppFoundation
 import SwiftUI
 
 struct DevelopmentView: View {
@@ -15,7 +15,7 @@ struct DevelopmentView: View {
                             .bold()
                             .font(.caption2)
 
-                        Text(AppBuild.value.title)
+                        Text(AppConfiguration.value.title)
                             .bold()
                             .font(.subheadline)
                     }

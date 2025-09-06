@@ -1,4 +1,4 @@
-import AppConfiguration
+import AppFoundation
 import Foundation
 import SwiftData
 
@@ -25,7 +25,7 @@ public enum AppDebugDataContainer {
     }()
 
     public static func interceptor(_ item: APIModelItem) async {
-        guard AppConfiguration.Build.isLogging else {
+        guard AppConfiguration.isLogging else {
             return
         }
 

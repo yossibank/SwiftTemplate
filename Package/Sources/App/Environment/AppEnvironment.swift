@@ -1,4 +1,4 @@
-import AppConfiguration
+import AppFoundation
 import Foundation
 
 public enum AppEnvironment {
@@ -15,6 +15,6 @@ public enum AppEnvironment {
             forInfoDictionaryKey: "AppConfiguration"
         ) as! String
 
-        AppBuild.value = .init(value: value.toInt)
+        AppConfiguration.value = .init(value: value.toInt)
     }
 }

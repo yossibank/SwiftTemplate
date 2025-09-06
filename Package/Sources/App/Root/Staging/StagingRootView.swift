@@ -1,4 +1,3 @@
-import AppConfiguration
 import AppDebug
 import Environment
 import RakutenConnector

@@ -1,4 +1,4 @@
-import AppFeature
+import AppFoundation
 import SwiftUI
 import ViewComponent
 

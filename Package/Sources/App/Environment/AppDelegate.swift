@@ -1,7 +1,6 @@
-import AppConfiguration
 import AppDebug
-import AppFeature
-import AppFirebase
+import AppFoundation
+import FirebaseLive
 import SwiftUI
 import UIKit
 
@@ -22,7 +21,7 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func sendLog() {
-        Logger.info(message: "【Environment】\(AppBuild.value)")
+        Logger.info(message: "【Environment】\(AppConfiguration.value)")
     }
 
     private func sendEvent() {

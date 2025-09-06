@@ -4,7 +4,7 @@ typeset -A target_paths
 
 target_paths=(
 	APIClient "Package/Sources/Core/APIClient"
-	AppFirebase "Package/Sources/Core/AppFirebase"
+	FirebaseLive "Package/Sources/Core/FirebaseLive"
 	Rakuten "Package/Sources/Feature/Rakuten"
 	RakutenConnector "Package/Sources/Feature/RakutenConnector"
 )

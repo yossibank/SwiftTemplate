@@ -1,5 +1,5 @@
 import AppExtension
-import AppFeature
+import AppFoundation
 import AppUI
 import SwiftUI
 import ViewComponent

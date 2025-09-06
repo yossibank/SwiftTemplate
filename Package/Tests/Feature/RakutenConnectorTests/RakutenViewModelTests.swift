@@ -1,4 +1,4 @@
-import AppFeature
+import AppFoundation
 @testable import Mockolo
 @testable import Rakuten
 @testable import RakutenConnector

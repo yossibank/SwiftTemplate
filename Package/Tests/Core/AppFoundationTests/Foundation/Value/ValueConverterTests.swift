@@ -1,4 +1,4 @@
-@testable import AppFeature
+@testable import AppFoundation
 import Testing
 
 actor ValueConverterTests {
