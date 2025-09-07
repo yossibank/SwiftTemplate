@@ -1,16 +1,16 @@
 @testable import RakutenView
 
-extension RakutenViewItem {
-    static let mock = RakutenViewItem.makeTestBuilder()
-        .items([.mock])
+enum RakutenViewItemMock {
+    static let testData = RakutenViewItem.makeTestBuilder()
+        .items([RakutenViewItemItemMock.testData])
         .totalCount(1)
         .currentPage(1)
         .maxPage(1)
         .build()
 }
 
-extension RakutenViewItem.Item {
-    static let mock = RakutenViewItem.Item.makeTestBuilder()
+enum RakutenViewItemItemMock {
+    static let testData = RakutenViewItem.Item.makeTestBuilder()
         .id("itemCode1")
         .name("name1")
         .price("12,345円")

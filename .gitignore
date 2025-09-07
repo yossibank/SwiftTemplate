@@ -82,5 +82,8 @@ GoogleService*
 # Mockolo
 *Mock.swift
 
+# Test
+Test/
+
 # ENV
 .env

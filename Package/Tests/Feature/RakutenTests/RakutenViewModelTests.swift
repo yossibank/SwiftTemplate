@@ -24,10 +24,10 @@ struct RakutenViewModelTests {
     @Test("検索できること(成功)")
     func searchSuccess() async {
         // arrange
-        let viewItems = [RakutenViewItem.Item.mock]
+        let viewItems = [RakutenViewItemItemMock.testData]
 
         useCase.searchHandler = { _, _ in
-            RakutenModel.mock
+            RakutenModelMock.testData
         }
 
         converter.convertHandler = { _ in

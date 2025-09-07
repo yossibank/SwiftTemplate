@@ -8,8 +8,8 @@ actor RakutenConverterTests {
     @Test("RakutenModel → RakutenViewItemに変換できること")
     func convert() {
         // arrange
-        let model = RakutenModel.mock
-        let expected = RakutenViewItem.mock
+        let model = RakutenModelMock.testData
+        let expected = RakutenViewItemMock.testData
 
         // act
         let actaul = converter.convert(model)
