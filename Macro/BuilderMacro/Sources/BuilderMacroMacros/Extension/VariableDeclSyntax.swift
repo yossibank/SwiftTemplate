@@ -25,21 +25,6 @@ extension VariableDeclSyntax {
         typeSyntax?.description
     }
 
-    /**
-     * 型名をオプショナル型にして取得する
-     *  var name: String → String?
-     *  let age: Int → Int?
-     */
-    var typeStringAsOptional: String? {
-        guard let typeString else {
-            return nil
-        }
-
-        return typeString.last == "?"
-            ? typeString
-            : "\(typeString)?"
-    }
-
     private var typeSyntax: TypeSyntax? {
         bindings.first?.typeAnnotation?.type
     }

@@ -31,12 +31,12 @@ extension BuilderBodyGenerator {
         variables: [TypedVarialble]
     ) -> [DeclSyntax] {
         [
-            DeclSyntax(createBuilderClass(memberName: memberName, variables: variables)),
-            DeclSyntax(createMakeBuilderFunction())
+            DeclSyntax(builderClassDecl(memberName: memberName, variables: variables)),
+            DeclSyntax(makeTestBuilderDecl())
         ]
     }
 
-    private func createBuilderClass(
+    private func builderClassDecl(
         memberName: String,
         variables: [TypedVarialble]
     ) -> ClassDeclSyntax {
@@ -48,25 +48,10 @@ extension BuilderBodyGenerator {
             DeclSyntax(
                 """
                 \n
-                public init() {}
-                """
-            )
-
-            DeclSyntax(
-                """
-                \n
-                public convenience init(_ item: \(raw: memberName)?) {
-                    self.init()
-                    fill(with: item)
-                }
-                """
-            )
-
-            DeclSyntax(
-                """
-                \n
-                public func fill(with item: \(raw: memberName)?) {
-                    \(raw: variables.fillAssignments)
+                public init(
+                    \(raw: variables.initArguments)
+                ) {
+                    \(raw: variables.initDefinisions)
                 }
                 """
             )
@@ -83,10 +68,9 @@ extension BuilderBodyGenerator {
             DeclSyntax(
                 """
                 \n
-                public func build() -> \(raw: memberName)? {
-                    \(raw: variables.buildGuards)
+                public func build() -> \(raw: memberName) {
                     return \(raw: memberName)(
-                        \(raw: variables.initAssignments)
+                        \(raw: variables.buildDefinitions)
                     )
                 }
                 """
@@ -94,76 +78,137 @@ extension BuilderBodyGenerator {
         }
     }
 
-    private func createMakeBuilderFunction() -> FunctionDeclSyntax {
-        try! FunctionDeclSyntax("public static func makeBuilder() -> Builder") {
+    private func makeTestBuilderDecl() -> FunctionDeclSyntax {
+        try! FunctionDeclSyntax("public static func makeTestBuilder() -> Builder") {
             ExprSyntax("Builder()")
         }
     }
 }
 
 extension [BuilderBodyGenerator.TypedVarialble] {
-    var fillAssignments: String {
-        map { $0.assignment(from: "item", isOptional: true) }
-            .joined(separator: "\n")
-    }
-
-    var initAssignments: String {
-        map(\.initAssignment)
+    var initArguments: String {
+        map(\.initArgument)
             .joined(separator: ",\n")
     }
 
-    var buildGuards: String {
-        let nonOptionalVars = filter { !$0.isOptional }
+    var initDefinisions: String {
+        map(\.initDefinition)
+            .joined(separator: "\n")
+    }
 
-        return "guard "
-            + nonOptionalVars.compactMap(\.guardCheck).joined(separator: ", ")
-            + " else { return nil }"
+    var buildDefinitions: String {
+        map(\.buildDefinition)
+            .joined(separator: ",\n")
     }
 }
 
 extension BuilderBodyGenerator.TypedVarialble {
-    func assignment(
-        from property: String,
-        isOptional: Bool
-    ) -> String {
-        "\(name) = \(property + (isOptional ? "?" : "")).\(name)"
+    var initArgument: String {
+        "\(name): \(type) = \(defaultValue)"
+    }
+
+    var initDefinition: String {
+        "self.\(name) = \(name)"
     }
 
     var varDefinition: String {
-        "public var \(name): \(optionalType)"
+        "public var \(name): \(type)"
     }
 
     var functionDefinition: String {
         """
-        public func \(name)(_ \(name): \(optionalType)) -> Self {
+        public func \(name)(_ \(name): \(type)) -> Self {
             self.\(name) = \(name)
             return self
         }
         """
     }
 
-    var initAssignment: String {
-        isUUID
-            ? "\(name): \(name) ?? UUID()"
-            : "\(name): \(name)"
+    var buildDefinition: String {
+        "\(name): \(name)"
     }
 
-    var guardCheck: String? {
-        isUUID
-            ? nil
-            : "let \(name)"
-    }
-
-    var isUUID: Bool {
-        name == "uuid"
-    }
-
-    var isOptional: Bool {
+    private var isOptional: Bool {
         type.last == "?"
     }
 
-    private var optionalType: String {
-        isOptional ? type : "\(type)?"
+    private var defaultValue: String {
+        let baseType = isOptional ? String(type.dropLast()) : type
+
+        if isOptional {
+            return "nil"
+        } else {
+            switch baseType {
+            case "String":
+                return "\"\""
+
+            case "Int", "Int8", "Int16", "Int32", "Int64":
+                return "0"
+
+            case "UInt", "UInt8", "UInt16", "UInt32", "UInt64":
+                return "0"
+
+            case "Bool":
+                return "false"
+
+            case "Double":
+                return "0"
+
+            case "Float":
+                return "0"
+
+            case "CGFloat":
+                return "0"
+
+            case "Date":
+                return "Date()"
+
+            case "UUID":
+                return "UUID()"
+
+            case "Data":
+                return "Data()"
+
+            case "URL":
+                return "URL(string: \"https://www.google.com\")!"
+
+            case "CGPoint":
+                return "CGPoint()"
+
+            case "CGRect":
+                return "CGRect()"
+
+            case "CGSize":
+                return "CGSize()"
+
+            case "CGVector":
+                return "CGVector()"
+
+            case let dictType where dictType.contains(":") && dictType.hasPrefix("[") && dictType.hasSuffix("]"):
+                return "[:]"
+
+            case let arrayType where arrayType.hasPrefix("[") && arrayType.hasSuffix("]"):
+                return "[]"
+
+            case let funcType where funcType.contains("->"):
+                if funcType == "() -> Void" {
+                    return "{}"
+                } else if funcType.hasPrefix("("), funcType.contains(") -> Void") {
+                    let paramCount = funcType.components(separatedBy: ",").count
+                    let params = (0..<paramCount).map { _ in "_" }.joined(separator: ", ")
+                    return "{ \(params) in }"
+                } else {
+                    return "{}"
+                }
+
+            default:
+                if baseType.hasSuffix("?") || baseType.hasSuffix("!") {
+                    return "nil"
+                } else {
+                    return "\(baseType).makeTestBuilder().build()"
+                }
+            }
+        }
     }
 }
 

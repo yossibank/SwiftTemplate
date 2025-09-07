@@ -5,12 +5,18 @@ import Foundation
 struct User {
     let name: String
     let age: Int
-    let hobby: String?
+    let hobby: Hobby
+
+    @Builder
+    struct Hobby {
+        let count: Int
+    }
 }
 
-let user = User.makeBuilder()
+let user = User.makeTestBuilder()
     .name("Y.K")
     .age(29)
-    .hobby("soccer")
+    .hobby(User.Hobby.makeTestBuilder().count(20).build())
+    .build()
 
 print(String(describing: user))
