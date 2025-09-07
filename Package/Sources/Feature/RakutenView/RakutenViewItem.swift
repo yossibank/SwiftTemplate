@@ -1,3 +1,4 @@
+import BuilderMacro
 import Foundation
 
 public struct RakutenViewItem: Hashable, Sendable {
@@ -6,6 +7,7 @@ public struct RakutenViewItem: Hashable, Sendable {
     public let currentPage: Int
     public let maxPage: Int
 
+    @Builder
     public struct Item: Hashable, Sendable {
         public let id: String
         public let name: String

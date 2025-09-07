@@ -88,6 +88,15 @@ let ohHttpStubs = Target.Dependency.product(
     package: "OHHTTPStubs"
 )
 
+// MARK: - Marco
+
+// Swift SyntaxをPreBuild → defaults write com.apple.dt.Xcode IDEPackageEnablePrebuilts YES
+
+let builderMacro = Target.Dependency.product(
+    name: "BuilderMacro",
+    package: "BuilderMacro"
+)
+
 // MARK: - Package
 
 let appExtension = Target.target(
@@ -105,6 +114,9 @@ let appFoundation = Target.target(
 
 let viewComponent = Target.target(
     name: "ViewComponent",
+    dependencies: [
+        appFoundation
+    ],
     path: "./Sources/Core/ViewComponent"
 )
 
@@ -142,6 +154,9 @@ let rakutenView = Target.target(
     dependencies: [
         appFoundation,
         viewComponent
+    ],
+    dependenciesLibraries: [
+        builderMacro
     ],
     path: "./Sources/Feature/RakutenView"
 )
@@ -259,7 +274,8 @@ let package = Package.package(
         .package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
             from: "9.1.0"
-        )
+        ),
+        .package(path: "../Macro/BuilderMacro")
     ],
     targets: [
         apiClient,
