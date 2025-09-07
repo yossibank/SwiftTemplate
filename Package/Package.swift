@@ -259,6 +259,9 @@ let rakutenTests = Target.testTarget(
         rakuten,
         mockolo
     ],
+    dependenciesLibraries: [
+        builderMacro
+    ],
     path: "./Tests/Feature/RakutenTests"
 )
 
