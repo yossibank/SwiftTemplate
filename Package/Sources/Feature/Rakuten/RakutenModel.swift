@@ -1,11 +1,14 @@
+import BuilderMacro
 import Foundation
 
+@Builder
 public struct RakutenModel: Equatable, Sendable {
     public let items: [RakutenItem]
     public let totalCount: Int
     public let currentPage: Int
     public let maxPage: Int
 
+    @Builder
     public struct RakutenItem: Equatable, Sendable {
         public let id: String
         public let name: String

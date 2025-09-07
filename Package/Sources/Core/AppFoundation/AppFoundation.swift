@@ -101,6 +101,6 @@ public enum AppFoundation {
         case additionalLoading
         case initialError(AppError)
         case additionalError(AppError)
-        case loaded(loaded: [T])
+        case loaded(items: [T])
     }
 }

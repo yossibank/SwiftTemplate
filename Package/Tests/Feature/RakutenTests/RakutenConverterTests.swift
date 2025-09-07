@@ -8,36 +8,8 @@ actor RakutenConverterTests {
     @Test("RakutenModel → RakutenViewItemに変換できること")
     func convert() {
         // arrange
-        let expected = RakutenViewItem(
-            items: [
-                .init(
-                    id: "1",
-                    name: "title1",
-                    price: "10,000円",
-                    imageURL: .init(string: "https://sample.com/imageURL1")
-                )
-            ],
-            totalCount: 100,
-            currentPage: 1,
-            maxPage: 10
-        )
-
-        let model = RakutenModel(
-            items: [
-                .init(
-                    id: "1",
-                    name: "title1",
-                    description: "description1",
-                    price: 10000,
-                    imageURL: .init(string: "https://sample.com/imageURL1"),
-                    imageURLs: [],
-                    itemURL: nil
-                )
-            ],
-            totalCount: 100,
-            currentPage: 1,
-            maxPage: 10
-        )
+        let model = RakutenModel.mock
+        let expected = RakutenViewItem.mock
 
         // act
         let actaul = converter.convert(model)

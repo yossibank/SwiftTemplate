@@ -24,41 +24,19 @@ struct RakutenViewModelTests {
     @Test("検索できること(成功)")
     func searchSuccess() async {
         // arrange
-        let viewItems = [
-            RakutenViewItem.Item(
-                id: "1",
-                name: "title1",
-                price: "1,000円",
-                imageURL: nil
-            )
-        ]
+        let viewItems = [RakutenViewItem.Item.mock]
 
         useCase.searchHandler = { _, _ in
-            RakutenModel(
-                items: [
-                    .init(
-                        id: "1",
-                        name: "ittle1",
-                        description: "description1",
-                        price: 1000,
-                        imageURL: nil,
-                        imageURLs: [],
-                        itemURL: nil
-                    )
-                ],
-                totalCount: 100,
-                currentPage: 1,
-                maxPage: 10
-            )
+            RakutenModel.mock
         }
 
         converter.convertHandler = { _ in
-            RakutenViewItem(
-                items: viewItems,
-                totalCount: 100,
-                currentPage: 1,
-                maxPage: 10
-            )
+            RakutenViewItem.makeTestBuilder()
+                .items(viewItems)
+                .totalCount(1)
+                .currentPage(1)
+                .maxPage(1)
+                .build()
         }
 
         // act
@@ -66,7 +44,7 @@ struct RakutenViewModelTests {
 
         // assert
         #expect(viewModel.outputs.loadedItems == viewItems)
-        #expect(viewModel.outputs.viewState == .loaded(loaded: viewItems))
+        #expect(viewModel.outputs.viewState == .loaded(items: viewItems))
     }
 
     @Test("検索できること(失敗)")

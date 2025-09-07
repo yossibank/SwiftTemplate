@@ -1,6 +1,7 @@
 import BuilderMacro
 import Foundation
 
+@Builder
 public struct RakutenViewItem: Hashable, Sendable {
     public let items: [Item]
     public let totalCount: Int

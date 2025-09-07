@@ -158,5 +158,5 @@ public struct RakutenView: View {
 }
 
 #Preview {
-    RakutenView(viewModel: RakutenViewModelMock())
+    RakutenView(viewModel: RakutenViewModelPreview())
 }

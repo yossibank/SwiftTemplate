@@ -1,8 +1,10 @@
 import APIClient
+import BuilderMacro
 
 // https://webservice.rakuten.co.jp/documentation/ichiba-item-search
 
-public struct RakutenEntity: DataStructure {
+@Builder
+public struct RakutenEntity: DataStructure, Sendable {
     /// [商品情報]
     public let items: [RakutenItem]
 
@@ -38,7 +40,8 @@ public struct RakutenEntity: DataStructure {
         case pageCount
     }
 
-    public struct RakutenItem: DataStructure, Hashable {
+    @Builder
+    public struct RakutenItem: DataStructure, Hashable, Sendable {
         /// [商品名] 従来の商品名は「catchCopy + itemName」で表示される
         public let itemName: String
 

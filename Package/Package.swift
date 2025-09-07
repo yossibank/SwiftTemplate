@@ -168,6 +168,9 @@ let rakuten = Target.target(
         firebaseLive,
         rakutenView
     ],
+    dependenciesLibraries: [
+        builderMacro
+    ],
     path: "./Sources/Feature/Rakuten"
 )
 

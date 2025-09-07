@@ -3,6 +3,7 @@ import FirebaseLive
 import Foundation
 import RakutenView
 
+@MainActor
 @Observable
 public final class RakutenViewModel {
     public struct Dependency: Sendable {
@@ -97,7 +98,7 @@ private extension RakutenViewModel {
         parameter.nextPage = viewItem.currentPage + 1
         parameter.maxPage = viewItem.maxPage
         loadedItems.append(contentsOf: viewItem.items)
-        viewState = .loaded(loaded: loadedItems)
+        viewState = .loaded(items: loadedItems)
     }
 }
 
