@@ -120,6 +120,11 @@ let viewComponent = Target.target(
     path: "./Sources/Core/ViewComponent"
 )
 
+let viewEnvironment = Target.target(
+    name: "ViewEnvironment",
+    path: "./Sources/Core/ViewEnvironment"
+)
+
 let debugMenu = Target.target(
     name: "DebugMenu",
     dependencies: [
@@ -153,7 +158,8 @@ let rakutenView = Target.target(
     name: "RakutenView",
     dependencies: [
         appFoundation,
-        viewComponent
+        viewComponent,
+        viewEnvironment
     ],
     dependenciesLibraries: [
         builderMacro
@@ -179,7 +185,8 @@ let core = [
     appExtension,
     appFoundation,
     debugMenu,
-    viewComponent
+    viewComponent,
+    viewEnvironment
 ]
 
 let feature = [
@@ -187,27 +194,27 @@ let feature = [
     rakutenView
 ]
 
-let environment = Target.target(
-    name: "Environment",
+let appEnvironment = Target.target(
+    name: "AppEnvironment",
     dependencies: core + feature,
-    path: "./Sources/App/Environment"
+    path: "./Sources/App/AppEnvironment"
 )
 
 let debug = Target.target(
     name: "DebugApp",
-    dependencies: core + feature + [environment],
+    dependencies: core + feature + [appEnvironment],
     path: "./Sources/App/Root/Debug"
 )
 
 let staging = Target.target(
     name: "StagingApp",
-    dependencies: core + feature + [environment],
+    dependencies: core + feature + [appEnvironment],
     path: "./Sources/App/Root/Staging"
 )
 
 let release = Target.target(
     name: "ReleaseApp",
-    dependencies: core + feature + [environment],
+    dependencies: core + feature + [appEnvironment],
     path: "./Sources/App/Root/Release"
 )
 
@@ -290,9 +297,10 @@ let package = Package.package(
         debugMenu,
         firebaseLive,
         viewComponent,
+        viewEnvironment,
         rakuten,
         rakutenView,
-        environment,
+        appEnvironment,
         debug,
         staging,
         release,

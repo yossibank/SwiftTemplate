@@ -1,5 +1,5 @@
+import AppEnvironment
 import DebugApp
-import Environment
 import SwiftUI
 
 @main

@@ -1,4 +1,4 @@
-import Environment
+import AppEnvironment
 import ReleaseApp
 import SwiftUI
 

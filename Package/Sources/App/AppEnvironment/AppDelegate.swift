@@ -16,7 +16,7 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func setup() {
-        AppEnvironment.setup()
+        AppInitializer.setup()
         FirebaseConfiguration.setup()
     }
 

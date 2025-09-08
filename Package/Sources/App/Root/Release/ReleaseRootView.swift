@@ -1,11 +1,14 @@
+import AppEnvironment
 import Rakuten
 import RakutenView
 import SwiftUI
 
 public struct ReleaseRootView: View {
+    private let appRouter = AppRouter(resolver: AppEnvironment())
+
     public init() {}
 
     public var body: some View {
-        RakutenView(viewModel: RakutenViewModel.make())
+        appRouter.rootView
     }
 }

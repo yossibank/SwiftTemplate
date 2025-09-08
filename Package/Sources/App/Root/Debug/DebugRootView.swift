@@ -1,5 +1,5 @@
+import AppEnvironment
 import DebugMenu
-import Environment
 import Rakuten
 import RakutenView
 import SwiftUI
@@ -8,17 +8,19 @@ import ViewComponent
 public struct DebugRootView: View {
     @State private var isShowDebug = false
 
+    private let appRouter = AppRouter(resolver: AppEnvironment())
+
     public init() {}
 
     public var body: some View {
-        RakutenView(viewModel: RakutenViewModel.make())
+        appRouter.rootView
             .onShake {
                 isShowDebug.toggle()
             }
             .sheet(isPresented: $isShowDebug) {
                 DebugView(
                     dataModel: .init(
-                        appVersion: AppEnvironment.version
+                        appVersion: AppBundle.version
                     )
                 )
             }
