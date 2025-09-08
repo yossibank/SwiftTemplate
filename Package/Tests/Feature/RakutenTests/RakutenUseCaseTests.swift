@@ -17,11 +17,11 @@ struct RakutenUseCaseTests {
     @Test("検索結果が受け取れること")
     func search() async throws {
         // arrange
-        let expected = RakutenModelMock.testData
+        let expected = RakutenModel.testData
 
         apiClient.requestHandler = { request in
             #expect(request is RakutenRequest)
-            return RakutenEntityMock.testData
+            return RakutenEntity.testData
         }
 
         translator.translateHandler = { _ in

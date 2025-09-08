@@ -3,6 +3,8 @@ import SwiftUI
 
 @Observable
 public final class RakutenViewModelPreview {
+    public init() {}
+
     // MARK: - Output
 
     public var viewState: AppPagingState<RakutenViewItem.Item> = .loaded(

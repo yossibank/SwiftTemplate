@@ -7,8 +7,8 @@ actor RakutenTranslatorTests {
     @Test("RakutenEntity → RakutenModelに変換できること")
     func translate() {
         // arrange
-        let entity = RakutenEntityMock.testData
-        let expected = RakutenModelMock.testData
+        let entity = RakutenEntity.testData
+        let expected = RakutenModel.testData
 
         // act
         let actual = translator.translate(entity)

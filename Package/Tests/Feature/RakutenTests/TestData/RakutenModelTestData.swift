@@ -1,7 +1,7 @@
 import BuilderMacro
 @testable import Rakuten
 
-enum RakutenModelMock {
+extension RakutenModel {
     static let testData = RakutenModel.makeTestBuilder()
         .items(
             [

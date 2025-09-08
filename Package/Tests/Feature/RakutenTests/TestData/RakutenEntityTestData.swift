@@ -1,7 +1,7 @@
 import BuilderMacro
 @testable import Rakuten
 
-enum RakutenEntityMock {
+extension RakutenEntity {
     static let testData = RakutenEntity.makeTestBuilder()
         .items(
             [

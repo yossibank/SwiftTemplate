@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Demo/RakutenDemo.swiftpm">
+   </FileRef>
+   <FileRef
       location = "group:App/Debug.xcodeproj">
    </FileRef>
    <FileRef

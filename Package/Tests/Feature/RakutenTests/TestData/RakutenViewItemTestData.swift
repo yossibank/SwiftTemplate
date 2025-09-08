@@ -1,16 +1,16 @@
 import BuilderMacro
 @testable import RakutenView
 
-enum RakutenViewItemMock {
+extension RakutenViewItem {
     static let testData = RakutenViewItem.makeTestBuilder()
-        .items([RakutenViewItemItemMock.testData])
+        .items([.testData])
         .totalCount(1)
         .currentPage(1)
         .maxPage(1)
         .build()
 }
 
-enum RakutenViewItemItemMock {
+extension RakutenViewItem.Item {
     static let testData = RakutenViewItem.Item.makeTestBuilder()
         .id("itemCode1")
         .name("name1")
