@@ -8,12 +8,12 @@ import ViewComponent
 public struct DebugRootView: View {
     @State private var isShowDebug = false
 
-    private let appRouter = AppRouter(resolver: AppEnvironment())
+    private let appRouter = AppRouter(environment: AppEnvironment())
 
     public init() {}
 
     public var body: some View {
-        appRouter.rootView
+        appRouter.rootView()
             .onShake {
                 isShowDebug.toggle()
             }

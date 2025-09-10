@@ -111,36 +111,45 @@ public struct RakutenView: View {
         var body: some View {
             LazyVStack(spacing: 16) {
                 ForEach(items, id: \.id) { item in
-                    VStack(alignment: .center) {
-                        HStack(alignment: .top, spacing: 12) {
-                            AsyncImageView(
-                                url: item.imageURL,
-                                successImage: { image in
-                                    image.resizable()
+                    NavigationLink {
+                        viewModel.router.detailView(item.name)
+                    } label: {
+                        HStack {
+                            VStack(alignment: .center) {
+                                HStack(alignment: .top, spacing: 12) {
+                                    AsyncImageView(
+                                        url: item.imageURL,
+                                        successImage: { image in
+                                            image.resizable()
+                                        }
+                                    )
+                                    .frame(width: 120, height: 120)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+
+                                    VStack(alignment: .leading) {
+                                        Text(item.name)
+                                            .font(.system(size: 16, weight: .bold))
+                                            .lineLimit(4)
+
+                                        Spacer()
+
+                                        HStack(alignment: .bottom) {
+                                            Spacer()
+
+                                            Text(item.price)
+                                                .font(.system(size: 18, weight: .bold))
+                                                .foregroundStyle(.red)
+                                        }
+                                    }
                                 }
-                            )
-                            .frame(width: 120, height: 120)
-                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .padding(.horizontal, 16)
 
-                            VStack(alignment: .leading) {
-                                Text(item.name)
-                                    .font(.system(size: 16, weight: .bold))
-                                    .lineLimit(4)
-
-                                Spacer()
-
-                                HStack(alignment: .bottom) {
-                                    Spacer()
-
-                                    Text(item.price)
-                                        .font(.system(size: 18, weight: .bold))
-                                        .foregroundStyle(.red)
-                                }
+                                Divider()
                             }
-                        }
-                        .padding(.horizontal, 16)
 
-                        Divider()
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
                     }
                     .onAppear {
                         Task {
@@ -151,12 +160,33 @@ public struct RakutenView: View {
                             await viewModel.inputs.additionalLoading(item)
                         }
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }
     }
 }
 
-#Preview {
-    RakutenView(viewModel: RakutenViewModelPreview())
+#Preview("初期状態") {
+    RakutenView(
+        viewModel: RakutenViewModelPreview()
+    )
+}
+
+#Preview("ローディング状態") {
+    RakutenView(
+        viewModel: RakutenViewModelPreview(
+            viewState: .initialLoading,
+            parameter: .init(keyword: "テスト")
+        )
+    )
+}
+
+#Preview("読み込み完了状態") {
+    RakutenView(
+        viewModel: RakutenViewModelPreview(
+            viewState: .loaded(items: RakutenViewItem.preview),
+            parameter: .init(keyword: "テスト")
+        )
+    )
 }

@@ -3,12 +3,14 @@ import AppFoundation
 @testable import Rakuten
 @testable import RakutenView
 import Testing
+@testable import ViewEnvironment
 
 @MainActor
 struct RakutenViewModelTests {
     private let useCase = RakutenUseCaseProtocolMock()
     private let converter = RakutenConverterProtocolMock()
     private let analytics = FirebaseAnalyzableMock()
+    private let environment = PreviewEnvironment()
     private let viewModel: RakutenViewModel
 
     init() {
@@ -16,7 +18,8 @@ struct RakutenViewModelTests {
             dependency: .init(
                 useCase: useCase,
                 converter: converter,
-                analytics: analytics
+                analytics: analytics,
+                environment: environment
             )
         )
     }

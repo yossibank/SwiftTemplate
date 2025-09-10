@@ -3,13 +3,15 @@ import ViewEnvironment
 
 @MainActor
 public final class AppRouter {
-    public var rootView: some View {
-        resolver.resolveConcrete(ViewDescriptor.RakutenDescriptor())
+    private let environment: any ViewEnvironment
+
+    public init(environment: any ViewEnvironment) {
+        self.environment = environment
     }
 
-    private let resolver: any ViewResolver
-
-    public init(resolver: any ViewResolver) {
-        self.resolver = resolver
+    public func rootView() -> some View {
+        let descriptor = ViewDescriptor.RakutenDescriptor()
+        let view = environment.resolve(descriptor)
+        return view
     }
 }

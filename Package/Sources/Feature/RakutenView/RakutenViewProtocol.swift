@@ -7,6 +7,7 @@ public protocol RakutenViewModelProtocol: AnyObject {
     var inputs: RakutenViewInput { get }
     var outputs: RakutenViewOutput { get }
     var binding: RakutenViewBinding { get set }
+    var router: RakutenRouter { get }
 }
 
 /// @mockable

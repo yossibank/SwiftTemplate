@@ -1,6 +1,7 @@
 import Foundation
 
-public protocol ViewEnvironment {
+@MainActor
+public protocol ViewEnvironment: Sendable {
     func resolve<Descriptor: TypedDescriptor>(
         _ descriptor: Descriptor
     ) -> Descriptor.Output

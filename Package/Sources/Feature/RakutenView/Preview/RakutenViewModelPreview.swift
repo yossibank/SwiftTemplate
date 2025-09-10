@@ -1,17 +1,22 @@
 import AppFoundation
 import SwiftUI
+import ViewEnvironment
 
 @Observable
 public final class RakutenViewModelPreview {
-    public init() {}
+    public init(
+        viewState: AppPagingState<RakutenViewItem.Item> = .initial,
+        parameter: RakutenViewItem.Parameter = .init()
+    ) {
+        self.viewState = viewState
+        self.parameter = parameter
+    }
 
     // MARK: - Output
 
-    public var viewState: AppPagingState<RakutenViewItem.Item> = .loaded(
-        items: RakutenViewItem.preview
-    )
+    public var viewState: AppPagingState<RakutenViewItem.Item>
     public var loadedItems: [RakutenViewItem.Item] = RakutenViewItem.preview
-    public var parameter = RakutenViewItem.Parameter(keyword: "テスト検索")
+    public var parameter = RakutenViewItem.Parameter()
 
     // MARK: - Input
 
@@ -30,6 +35,10 @@ extension RakutenViewModelPreview: RakutenViewModelProtocol {
     public var binding: any RakutenViewBinding {
         get { self }
         set {}
+    }
+
+    public var router: RakutenRouter {
+        .init(environment: PreviewEnvironment())
     }
 }
 

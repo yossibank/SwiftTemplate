@@ -9,13 +9,6 @@ public final class RakutenUseCase: RakutenUseCaseProtocol {
     private let apiClient: any APIClientProtocol
     private let translator: any RakutenTranslatorProtocol
 
-    public static func make() -> RakutenUseCase {
-        .init(
-            apiClient: APIClient(),
-            translator: RakutenTranslator()
-        )
-    }
-
     public init(
         apiClient: any APIClientProtocol,
         translator: any RakutenTranslatorProtocol

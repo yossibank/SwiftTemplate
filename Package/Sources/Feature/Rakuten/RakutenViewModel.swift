@@ -2,6 +2,7 @@ import AppFoundation
 import FirebaseLive
 import Foundation
 import RakutenView
+import ViewEnvironment
 
 @MainActor
 @Observable
@@ -10,19 +11,22 @@ public final class RakutenViewModel {
         let useCase: any RakutenUseCaseProtocol
         let converter: any RakutenConverterProtocol
         let analytics: any FirebaseAnalyzable
+        let environment: any ViewEnvironment
+
+        public init(
+            useCase: any RakutenUseCaseProtocol,
+            converter: any RakutenConverterProtocol,
+            analytics: any FirebaseAnalyzable,
+            environment: any ViewEnvironment
+        ) {
+            self.useCase = useCase
+            self.converter = converter
+            self.analytics = analytics
+            self.environment = environment
+        }
     }
 
     private let dependency: Dependency
-
-    public static func make() -> RakutenViewModel {
-        RakutenViewModel(
-            dependency: .init(
-                useCase: RakutenUseCase.make(),
-                converter: RakutenConverter(),
-                analytics: FirebaseAnalytics(screenID: .search)
-            )
-        )
-    }
 
     public init(dependency: Dependency) {
         self.dependency = dependency
@@ -113,6 +117,10 @@ extension RakutenViewModel: RakutenViewModelProtocol {
     public var binding: any RakutenViewBinding {
         get { self }
         set {}
+    }
+
+    public var router: RakutenRouter {
+        .init(environment: dependency.environment)
     }
 }
 

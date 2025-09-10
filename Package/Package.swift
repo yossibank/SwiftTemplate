@@ -167,11 +167,22 @@ let rakutenView = Target.target(
     path: "./Sources/Feature/RakutenView"
 )
 
+let rakutenDetailView = Target.target(
+    name: "RakutenDetailView",
+    dependencies: [
+        appFoundation,
+        viewComponent,
+        viewEnvironment
+    ],
+    path: "./Sources/Feature/RakutenDetailView"
+)
+
 let rakuten = Target.target(
     name: "Rakuten",
     dependencies: [
         apiClient,
         firebaseLive,
+        rakutenDetailView,
         rakutenView
     ],
     dependenciesLibraries: [
@@ -191,6 +202,7 @@ let core = [
 
 let feature = [
     rakuten,
+    rakutenDetailView,
     rakutenView
 ]
 
@@ -299,6 +311,7 @@ let package = Package.package(
         viewComponent,
         viewEnvironment,
         rakuten,
+        rakutenDetailView,
         rakutenView,
         appEnvironment,
         debug,

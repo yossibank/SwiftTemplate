@@ -7,12 +7,12 @@ import SwiftUI
 public struct StagingRootView: View {
     @State private var isShowDebug = false
 
-    private let appRouter = AppRouter(resolver: AppEnvironment())
+    private let appRouter = AppRouter(environment: AppEnvironment())
 
     public init() {}
 
     public var body: some View {
-        appRouter.rootView
+        appRouter.rootView()
             .onShake {
                 isShowDebug.toggle()
             }
