@@ -163,7 +163,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh ../script/buildPhases/release-build.sh\n";
+			shellScript = "# ※ Renovate導入している場合は不要\n# sh ../script/buildPhases/release-build.sh\n";
 		};
 		783AAEB62E5A945700026537 /* License Plist */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -182,7 +182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh ../script/buildPhases/license-plist.sh\n";
+			shellScript = "# ※ Renovate導入している場合は不要\n# sh ../script/buildPhases/license-plist.sh\n";
 		};
 		78C6CFB82E5A0FC200FF4A66 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
