@@ -294,7 +294,7 @@ let package = Package.package(
     dependencies: [
         .package(
             url: "https://github.com/firebase/firebase-ios-sdk",
-            from: "11.15.0"
+            from: "12.2.0"
         ),
         .package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
