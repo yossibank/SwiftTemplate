@@ -3,6 +3,8 @@
 # file options
 
 --exclude BuildTools
+--exclude Package/Sources/App/AppEnvironment/AppEnvironment.swift
+--exclude Package/Sources/Core/ViewEnvironment/ViewResolver.swift
 
 # format options
 

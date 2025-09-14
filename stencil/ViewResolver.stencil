@@ -1,0 +1,15 @@
+import Foundation
+
+@MainActor
+public protocol ViewResolver {
+    {% for type in types.all %}
+    {% for nestedType in type.containedTypes %}
+    func resolveConcrete(
+        _ descriptor: ViewDescriptor.{{ nestedType.localName }}
+    ) -> ViewDescriptor.{{ nestedType.localName }}.Output
+    {% if not forloop.last %}
+
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+}

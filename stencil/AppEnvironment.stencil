@@ -1,0 +1,38 @@
+import ViewEnvironment
+
+@MainActor
+public struct AppEnvironment {
+    public init() {}
+}
+
+extension AppEnvironment: ViewEnvironment {
+    public func resolve<Descriptor: TypedDescriptor>(
+        _ descriptor: Descriptor
+    ) -> Descriptor.Output {
+        switch descriptor {
+        {% for type in types.all %}
+        {% for nestedType in type.containedTypes %}
+        case let {{ nestedType.localName|lowerFirstLetter }} as ViewDescriptor.{{ nestedType.localName }}:
+            resolveConcrete({{ nestedType.localName|lowerFirstLetter }}) as! Descriptor.Output
+        {% endfor %}
+        {% endfor %}
+        default:
+            fatalError("Unknown descriptor")
+        }
+    }
+}
+
+extension AppEnvironment: ViewResolver {
+    {% for type in types.all %}
+    {% for nestedType in type.containedTypes %}
+    public func resolveConcrete(
+        _ descriptor: ViewDescriptor.{{ nestedType.localName }}
+    ) -> ViewDescriptor.{{ nestedType.localName }}.Output {
+        AppViewBuilder.build(with: descriptor, environment: self)
+    }
+    {% if not forloop.last %}
+
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+}

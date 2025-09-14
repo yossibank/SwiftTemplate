@@ -4,6 +4,7 @@ PRODUCT_NAME := SwiftTemplate
 setup:
 	$(MAKE) install-bundler
 	$(MAKE) install-mint-packages
+	$(MAKE) generate-sourcery
 	$(MAKE) generate-mock
 	$(MAKE) open
 
@@ -31,6 +32,25 @@ install-mint-packages:
 .PHONY: update-package
 update-package:
 	sh ./script/renovate/update-package.sh
+
+.PHONY: generate-sourcery
+generate-sourcery:
+	$(MAKE) generate-resolver
+	$(MAKE) generate-app-environment
+
+.PHONY: generate-resolver
+generate-resolver:
+	mint run krzysztofzablocki/Sourcery \
+		--sources Package/Sources/Core/ViewEnvironment/ViewDescriptor.swift \
+		--templates stencil/ViewResolver.stencil \
+		--output Package/Sources/Core/ViewEnvironment/ViewResolver.swift
+
+.PHONY: generate-app-environment
+generate-app-environment:
+	mint run krzysztofzablocki/Sourcery \
+		--sources Package/Sources/Core/ViewEnvironment/ViewDescriptor.swift \
+		--templates stencil/AppEnvironment.stencil \
+		--output Package/Sources/App/AppEnvironment/AppEnvironment.swift
 
 .PHONY: generate-mock
 generate-mock:
