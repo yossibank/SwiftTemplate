@@ -1,6 +1,6 @@
 import Foundation
 
-extension RakutenViewItem {
+public extension RakutenViewItem {
     static let preview: [RakutenViewItem.Item] = [
         .makeTestBuilder()
             .id("1")
