@@ -5,7 +5,11 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            RakutenView(viewModel: RakutenViewModelPreview())
+            RakutenView(
+                viewModel: RakutenViewModelPreview(
+                    viewState: .loaded(items: RakutenViewItem.preview)
+                )
+            )
         }
     }
 }
