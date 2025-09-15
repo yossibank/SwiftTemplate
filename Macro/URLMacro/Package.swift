@@ -5,7 +5,7 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
-    name: "BuilderMacro",
+    name: "URLMacro",
     platforms: [
         .macOS(.v13),
         .iOS(.v16),
@@ -15,12 +15,12 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "BuilderMacro",
-            targets: ["BuilderMacro"]
+            name: "URLMacro",
+            targets: ["URLMacro"]
         ),
         .executable(
-            name: "BuilderMacroClient",
-            targets: ["BuilderMacroClient"]
+            name: "URLMacroClient",
+            targets: ["URLMacroClient"]
         )
     ],
     dependencies: [
@@ -31,7 +31,7 @@ let package = Package(
     ],
     targets: [
         .macro(
-            name: "BuilderMacroMacros",
+            name: "URLMacroMacros",
             dependencies: [
                 .product(
                     name: "SwiftSyntaxMacros",
@@ -44,17 +44,17 @@ let package = Package(
             ]
         ),
         .target(
-            name: "BuilderMacro",
-            dependencies: ["BuilderMacroMacros"]
+            name: "URLMacro",
+            dependencies: ["URLMacroMacros"]
         ),
         .executableTarget(
-            name: "BuilderMacroClient",
-            dependencies: ["BuilderMacro"]
+            name: "URLMacroClient",
+            dependencies: ["URLMacro"]
         ),
         .testTarget(
-            name: "BuilderMacroTests",
+            name: "URLMacroTests",
             dependencies: [
-                "BuilderMacroMacros",
+                "URLMacroMacros",
                 .product(
                     name: "SwiftSyntaxMacrosTestSupport",
                     package: "swift-syntax"

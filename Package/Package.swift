@@ -97,6 +97,11 @@ let builderMacro = Target.Dependency.product(
     package: "BuilderMacro"
 )
 
+let urlMacro = Target.Dependency.product(
+    name: "URLMacro",
+    package: "URLMacro"
+)
+
 // MARK: - Package
 
 let appExtension = Target.target(
@@ -129,6 +134,9 @@ let debugMenu = Target.target(
     name: "DebugMenu",
     dependencies: [
         viewComponent
+    ],
+    dependenciesLibraries: [
+        urlMacro
     ],
     path: "./Sources/Core/DebugMenu"
 )
@@ -300,7 +308,8 @@ let package = Package.package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
             from: "9.1.0"
         ),
-        .package(path: "../Macro/BuilderMacro")
+        .package(path: "../Macro/BuilderMacro"),
+        .package(path: "../Macro/URLMacro")
     ],
     targets: [
         apiClient,
