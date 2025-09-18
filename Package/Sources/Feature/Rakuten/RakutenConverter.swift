@@ -1,4 +1,5 @@
 import AppFoundation
+import AutoInitMacro
 import RakutenView
 
 /// @mockable
@@ -6,10 +7,9 @@ public protocol RakutenConverterProtocol: Sendable {
     func convert(_ model: RakutenModel) -> RakutenViewItem
 }
 
+@AutoInit
 public struct RakutenConverter: RakutenConverterProtocol {
     private let valueConverter = ValueConverter()
-
-    public init() {}
 
     public func convert(_ model: RakutenModel) -> RakutenViewItem {
         RakutenViewItem(

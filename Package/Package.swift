@@ -92,6 +92,11 @@ let ohHttpStubs = Target.Dependency.product(
 
 // Swift SyntaxをPreBuild → defaults write com.apple.dt.Xcode IDEPackageEnablePrebuilts YES
 
+let autoInitMacro = Target.Dependency.product(
+    name: "AutoInitMacro",
+    package: "AutoInitMacro"
+)
+
 let builderMacro = Target.Dependency.product(
     name: "BuilderMacro",
     package: "BuilderMacro"
@@ -127,6 +132,9 @@ let viewComponent = Target.target(
 
 let viewEnvironment = Target.target(
     name: "ViewEnvironment",
+    dependenciesLibraries: [
+        autoInitMacro
+    ],
     path: "./Sources/Core/ViewEnvironment"
 )
 
@@ -147,6 +155,7 @@ let firebaseLive = Target.target(
         appFoundation
     ],
     dependenciesLibraries: [
+        autoInitMacro,
         firebaseAnalytics,
         firebaseCrashlytics
     ],
@@ -159,6 +168,9 @@ let apiClient = Target.target(
         appFoundation,
         debugMenu
     ],
+    dependenciesLibraries: [
+        autoInitMacro
+    ],
     path: "./Sources/Core/APIClient"
 )
 
@@ -170,6 +182,7 @@ let rakutenView = Target.target(
         viewEnvironment
     ],
     dependenciesLibraries: [
+        autoInitMacro,
         builderMacro
     ],
     path: "./Sources/Feature/RakutenView"
@@ -194,6 +207,7 @@ let rakuten = Target.target(
         rakutenView
     ],
     dependenciesLibraries: [
+        autoInitMacro,
         builderMacro
     ],
     path: "./Sources/Feature/Rakuten"
@@ -217,6 +231,7 @@ let feature = [
 let appEnvironment = Target.target(
     name: "AppEnvironment",
     dependencies: core + feature,
+    dependenciesLibraries: [autoInitMacro],
     path: "./Sources/App/AppEnvironment"
 )
 
@@ -308,6 +323,7 @@ let package = Package.package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
             from: "9.1.0"
         ),
+        .package(path: "../Macro/AutoInitMacro"),
         .package(path: "../Macro/BuilderMacro"),
         .package(path: "../Macro/URLMacro")
     ],

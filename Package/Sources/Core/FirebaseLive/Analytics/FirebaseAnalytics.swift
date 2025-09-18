@@ -1,12 +1,10 @@
 import AppFoundation
+import AutoInitMacro
 import FirebaseAnalytics
 
+@AutoInit
 public struct FirebaseAnalytics: FirebaseAnalyzable {
     public var screenID: FirebaseAnalyticsScreenID
-
-    public init(screenID: FirebaseAnalyticsScreenID) {
-        self.screenID = screenID
-    }
 
     public func sendEvent(_ event: FirebaseAnalyticsEvent) {
         var params = event.parameters

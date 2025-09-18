@@ -1,13 +1,11 @@
+import AutoInitMacro
 import SwiftUI
 import ViewEnvironment
 
+@AutoInit
 @MainActor
 public final class AppRouter {
     private let environment: any ViewEnvironment
-
-    public init(environment: any ViewEnvironment) {
-        self.environment = environment
-    }
 
     public func rootView() -> some View {
         let descriptor = ViewDescriptor.RakutenDescriptor()

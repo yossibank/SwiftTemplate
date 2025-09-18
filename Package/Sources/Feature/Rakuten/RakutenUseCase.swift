@@ -1,21 +1,15 @@
 import APIClient
+import AutoInitMacro
 
 /// @mockable
 public protocol RakutenUseCaseProtocol: Sendable {
     func search(keyword: String, page: Int) async throws -> RakutenModel
 }
 
+@AutoInit
 public final class RakutenUseCase: RakutenUseCaseProtocol {
     private let apiClient: any APIClientProtocol
     private let translator: any RakutenTranslatorProtocol
-
-    public init(
-        apiClient: any APIClientProtocol,
-        translator: any RakutenTranslatorProtocol
-    ) {
-        self.apiClient = apiClient
-        self.translator = translator
-    }
 }
 
 public extension RakutenUseCase {

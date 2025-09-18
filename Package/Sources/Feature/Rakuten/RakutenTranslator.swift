@@ -1,5 +1,6 @@
 import APIClient
 import AppExtension
+import AutoInitMacro
 import Foundation
 
 /// @mockable
@@ -7,9 +8,8 @@ public protocol RakutenTranslatorProtocol: Sendable {
     func translate(_ entity: RakutenEntity) -> RakutenModel
 }
 
+@AutoInit
 public struct RakutenTranslator: RakutenTranslatorProtocol {
-    public init() {}
-
     public func translate(_ entity: RakutenEntity) -> RakutenModel {
         .init(
             items: entity.items.map {

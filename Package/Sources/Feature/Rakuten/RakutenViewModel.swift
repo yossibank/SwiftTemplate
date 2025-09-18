@@ -1,4 +1,5 @@
 import AppFoundation
+import AutoInitMacro
 import FirebaseLive
 import Foundation
 import RakutenView
@@ -7,23 +8,12 @@ import ViewEnvironment
 @MainActor
 @Observable
 public final class RakutenViewModel {
+    @AutoInit
     public struct Dependency: Sendable {
         let useCase: any RakutenUseCaseProtocol
         let converter: any RakutenConverterProtocol
         let analytics: any FirebaseAnalyzable
         let environment: any ViewEnvironment
-
-        public init(
-            useCase: any RakutenUseCaseProtocol,
-            converter: any RakutenConverterProtocol,
-            analytics: any FirebaseAnalyzable,
-            environment: any ViewEnvironment
-        ) {
-            self.useCase = useCase
-            self.converter = converter
-            self.analytics = analytics
-            self.environment = environment
-        }
     }
 
     private let dependency: Dependency

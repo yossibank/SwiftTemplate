@@ -9,7 +9,7 @@ struct BuilderBodyGenerator {
         case missingDeclarationName
     }
 
-    fileprivate struct TypedVarialble {
+    fileprivate struct TypedVariable {
         let name: String
         let type: String
     }
@@ -29,7 +29,7 @@ struct BuilderBodyGenerator {
 extension BuilderBodyGenerator {
     private func generateBody(
         memberName: String,
-        variables: [TypedVarialble]
+        variables: [TypedVariable]
     ) -> [DeclSyntax] {
         [
             DeclSyntax(builderClassDecl(memberName: memberName, variables: variables)),
@@ -39,7 +39,7 @@ extension BuilderBodyGenerator {
 
     private func builderClassDecl(
         memberName: String,
-        variables: [TypedVarialble]
+        variables: [TypedVariable]
     ) -> ClassDeclSyntax {
         try! ClassDeclSyntax("public class Builder") {
             for variable in variables {
@@ -86,7 +86,7 @@ extension BuilderBodyGenerator {
     }
 }
 
-extension [BuilderBodyGenerator.TypedVarialble] {
+extension [BuilderBodyGenerator.TypedVariable] {
     var initArguments: String {
         map(\.initArgument)
             .joined(separator: ",\n")
@@ -103,7 +103,7 @@ extension [BuilderBodyGenerator.TypedVarialble] {
     }
 }
 
-extension BuilderBodyGenerator.TypedVarialble {
+extension BuilderBodyGenerator.TypedVariable {
     var initArgument: String {
         "\(name): \(type) = \(defaultValue)"
     }
@@ -217,7 +217,7 @@ private extension DeclGroupSyntax {
     /**
      * stored propertiesから文字列で変数名と型を抜き出し構造体のイニシャライズのための配列取得
      */
-    var typedMembers: [BuilderBodyGenerator.TypedVarialble] {
+    var typedMembers: [BuilderBodyGenerator.TypedVariable] {
         storedVariables.compactMap {
             guard
                 let name = $0.name,

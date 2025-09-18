@@ -1,13 +1,11 @@
+import AutoInitMacro
 import Foundation
 
-public struct EmptyParameters: Encodable, Equatable {
-    public init() {}
-}
+@AutoInit
+public struct EmptyParameters: Encodable, Equatable {}
 
-public struct EmptyAPIResponse: Codable, Equatable {
-    public init() {}
-}
+@AutoInit
+public struct EmptyAPIResponse: Codable, Equatable {}
 
-public struct EmptyPathComponent {
-    public init() {}
-}
+@AutoInit
+public struct EmptyPathComponent {}

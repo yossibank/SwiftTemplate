@@ -1,6 +1,8 @@
+import AutoInitMacro
 import BuilderMacro
 import Foundation
 
+@AutoInit
 @Builder
 public struct RakutenViewItem: Hashable, Sendable {
     public let items: [Item]
@@ -8,24 +10,13 @@ public struct RakutenViewItem: Hashable, Sendable {
     public let currentPage: Int
     public let maxPage: Int
 
+    @AutoInit
     @Builder
     public struct Item: Hashable, Sendable {
         public let id: String
         public let name: String
         public let price: String
         public let imageURL: URL?
-
-        public init(
-            id: String,
-            name: String,
-            price: String,
-            imageURL: URL?
-        ) {
-            self.id = id
-            self.name = name
-            self.price = price
-            self.imageURL = imageURL
-        }
     }
 
     public struct Parameter {
@@ -46,17 +37,5 @@ public struct RakutenViewItem: Hashable, Sendable {
             self.nextPage = nextPage
             self.maxPage = maxPage
         }
-    }
-
-    public init(
-        items: [Item],
-        totalCount: Int,
-        currentPage: Int,
-        maxPage: Int
-    ) {
-        self.items = items
-        self.totalCount = totalCount
-        self.currentPage = currentPage
-        self.maxPage = maxPage
     }
 }

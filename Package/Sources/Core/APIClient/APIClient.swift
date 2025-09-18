@@ -1,3 +1,4 @@
+import AutoInitMacro
 import DebugMenu
 import Foundation
 
@@ -6,9 +7,8 @@ public protocol APIClientProtocol: Sendable {
     func request<T>(item: some APIRequest<T>) async throws -> T
 }
 
+@AutoInit
 public struct APIClient: APIClientProtocol {
-    public init() {}
-
     public func request<T>(item: some APIRequest<T>) async throws -> T {
         guard let urlRequest = createURLRequest(item) else {
             throw APIError.invalidRequest
