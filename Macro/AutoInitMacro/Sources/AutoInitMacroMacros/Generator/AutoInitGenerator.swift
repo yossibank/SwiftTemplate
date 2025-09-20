@@ -12,6 +12,11 @@ struct AutoInitGenerator {
         let initialLabel: String?
     }
 
+    fileprivate struct InitConfiguration {
+        let label: String?
+        let value: String?
+    }
+
     func generateBody(from declaration: DeclGroupSyntax) -> [DeclSyntax] {
         generateBody(variables: declaration.typedMembers)
     }
@@ -97,15 +102,15 @@ private extension DeclGroupSyntax {
             return .init(
                 name: name,
                 type: type,
-                initialValue: $0.initialValueString,
-                initialLabel: $0.initialLabel
+                initialValue: $0.initConfiguration.value,
+                initialLabel: $0.initConfiguration.label
             )
         }
     }
 }
 
 private extension VariableDeclSyntax {
-    var initialLabel: String? {
+    var initConfiguration: AutoInitGenerator.InitConfiguration {
         for attribute in attributes {
             guard
                 case let .attribute(attr) = attribute,
@@ -122,28 +127,42 @@ private extension VariableDeclSyntax {
                 continue
             }
 
+            var label: String?
+            var value: String?
+
             for arg in list {
-                guard
-                    let label = arg.label,
-                    let expression = arg.expression.as(StringLiteralExprSyntax.self),
-                    label.text == "label"
-                else {
+                guard let argLabel = arg.label else {
                     continue
                 }
 
-                let segments = expression.segments
+                switch argLabel.text {
+                case "label":
+                    if let expression = arg.expression.as(StringLiteralExprSyntax.self),
+                       let firstSegment = expression.segments.first,
+                       case let .stringSegment(segment) = firstSegment {
+                        label = segment.content.text
+                    }
 
-                guard
-                    let firstSegment = segments.first,
-                    case let .stringSegment(segment) = firstSegment
-                else {
-                    continue
+                case "default":
+                    value = arg
+                        .expression
+                        .description
+                        .trimmingCharacters(in: .whitespaces)
+
+                default:
+                    break
                 }
-
-                return segment.content.text
             }
+
+            return .init(
+                label: label,
+                value: value
+            )
         }
 
-        return nil
+        return .init(
+            label: nil,
+            value: nil
+        )
     }
 }

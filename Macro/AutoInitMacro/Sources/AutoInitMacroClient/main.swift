@@ -2,14 +2,14 @@ import AutoInitMacro
 import Foundation
 
 @AutoInit
-struct User {
+public struct User {
     @Init(label: "_") let name: String
-    @Init(label: "foo") let age: Int
+    @Init(label: "foo", default: 20) let age: Int
     let hobby: Hobby
 
     @AutoInit
-    struct Hobby {
-        let count: Int
+    public struct Hobby {
+        @Init(default: 80) let count: Int
     }
 }
 
@@ -17,6 +17,6 @@ print(
     User(
         "Sam",
         foo: 10,
-        hobby: User.Hobby(count: 10)
+        hobby: User.Hobby()
     )
 )

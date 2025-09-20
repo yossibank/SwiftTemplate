@@ -33,25 +33,6 @@ extension VariableDeclSyntax {
 
 extension VariableDeclSyntax {
     /**
-     * 初期値の値を取得する
-     * var name: String = "HOGE" → "HOGE"
-     * var name: String = nil
-     */
-    var initialValueString: String? {
-        guard
-            let binding = bindings.first,
-            let initializer = binding.initializer
-        else {
-            return nil
-        }
-
-        return initializer
-            .value
-            .description
-            .trimmingCharacters(in: .whitespaces)
-    }
-
-    /**
      * stored propertyかどうかを判定する(※ property wrapperなどの特殊系は判定できない)
      *  var name: String { "HOGE" } → true
      *  var name: String = "HOGE" → false

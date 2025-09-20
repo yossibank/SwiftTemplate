@@ -185,6 +185,9 @@ extension BuilderBodyGenerator.TypedVariable {
             case "CGVector":
                 return "CGVector()"
 
+            case "UIColor":
+                return "UIColor.clear"
+
             case let dictType where dictType.contains(":") && dictType.hasPrefix("[") && dictType.hasSuffix("]"):
                 return "[:]"
 

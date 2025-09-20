@@ -92,13 +92,14 @@ final class BuilderMacroTests: XCTestCase {
                 let argument13: CGRect
                 let argument14: CGSize
                 let argument15: CGVector
-                let argument16: [String]
-                let argument17: [String: String]
-                let argument18: () -> Void
-                let argument19: (String) -> Void
-                let argument20: (String, String) -> Void
-                let argument21: String?
-                let argument22: String!
+                let argument16: UIColor
+                let argument17: [String]
+                let argument18: [String: String]
+                let argument19: () -> Void
+                let argument20: (String) -> Void
+                let argument21: (String, String) -> Void
+                let argument22: String?
+                let argument23: String!
             }
             """,
             expandedSource: """
@@ -118,13 +119,14 @@ final class BuilderMacroTests: XCTestCase {
                 let argument13: CGRect
                 let argument14: CGSize
                 let argument15: CGVector
-                let argument16: [String]
-                let argument17: [String: String]
-                let argument18: () -> Void
-                let argument19: (String) -> Void
-                let argument20: (String, String) -> Void
-                let argument21: String?
-                let argument22: String!
+                let argument16: UIColor
+                let argument17: [String]
+                let argument18: [String: String]
+                let argument19: () -> Void
+                let argument20: (String) -> Void
+                let argument21: (String, String) -> Void
+                let argument22: String?
+                let argument23: String!
 
                 public class Builder {
                     public var argument1: String
@@ -142,13 +144,14 @@ final class BuilderMacroTests: XCTestCase {
                     public var argument13: CGRect
                     public var argument14: CGSize
                     public var argument15: CGVector
-                    public var argument16: [String]
-                    public var argument17: [String: String]
-                    public var argument18: () -> Void
-                    public var argument19: (String) -> Void
-                    public var argument20: (String, String) -> Void
-                    public var argument21: String?
-                    public var argument22: String!
+                    public var argument16: UIColor
+                    public var argument17: [String]
+                    public var argument18: [String: String]
+                    public var argument19: () -> Void
+                    public var argument20: (String) -> Void
+                    public var argument21: (String, String) -> Void
+                    public var argument22: String?
+                    public var argument23: String!
 
                     public init(
                         argument1: String = "",
@@ -166,16 +169,17 @@ final class BuilderMacroTests: XCTestCase {
                         argument13: CGRect = CGRect(),
                         argument14: CGSize = CGSize(),
                         argument15: CGVector = CGVector(),
-                        argument16: [String] = [],
-                        argument17: [String: String] = [:],
-                        argument18: () -> Void = {
+                        argument16: UIColor = UIColor.clear,
+                        argument17: [String] = [],
+                        argument18: [String: String] = [:],
+                        argument19: () -> Void = {
                         },
-                        argument19: (String) -> Void = { _ in
+                        argument20: (String) -> Void = { _ in
                         },
-                        argument20: (String, String) -> Void = { _, _ in
+                        argument21: (String, String) -> Void = { _, _ in
                         },
-                        argument21: String? = nil,
-                        argument22: String! = nil
+                        argument22: String? = nil,
+                        argument23: String! = nil
                     ) {
                         self.argument1 = argument1
                         self.argument2 = argument2
@@ -199,6 +203,7 @@ final class BuilderMacroTests: XCTestCase {
                         self.argument20 = argument20
                         self.argument21 = argument21
                         self.argument22 = argument22
+                        self.argument23 = argument23
                     }
 
                     public func argument1(_ argument1: String) -> Self {
@@ -276,38 +281,43 @@ final class BuilderMacroTests: XCTestCase {
                         return self
                     }
 
-                    public func argument16(_ argument16: [String]) -> Self {
+                    public func argument16(_ argument16: UIColor) -> Self {
                         self.argument16 = argument16
                         return self
                     }
 
-                    public func argument17(_ argument17: [String: String]) -> Self {
+                    public func argument17(_ argument17: [String]) -> Self {
                         self.argument17 = argument17
                         return self
                     }
 
-                    public func argument18(_ argument18: () -> Void) -> Self {
+                    public func argument18(_ argument18: [String: String]) -> Self {
                         self.argument18 = argument18
                         return self
                     }
 
-                    public func argument19(_ argument19: (String) -> Void) -> Self {
+                    public func argument19(_ argument19: () -> Void) -> Self {
                         self.argument19 = argument19
                         return self
                     }
 
-                    public func argument20(_ argument20: (String, String) -> Void) -> Self {
+                    public func argument20(_ argument20: (String) -> Void) -> Self {
                         self.argument20 = argument20
                         return self
                     }
 
-                    public func argument21(_ argument21: String?) -> Self {
+                    public func argument21(_ argument21: (String, String) -> Void) -> Self {
                         self.argument21 = argument21
                         return self
                     }
 
-                    public func argument22(_ argument22: String!) -> Self {
+                    public func argument22(_ argument22: String?) -> Self {
                         self.argument22 = argument22
+                        return self
+                    }
+
+                    public func argument23(_ argument23: String!) -> Self {
+                        self.argument23 = argument23
                         return self
                     }
 
@@ -334,7 +344,8 @@ final class BuilderMacroTests: XCTestCase {
                             argument19: argument19,
                             argument20: argument20,
                             argument21: argument21,
-                            argument22: argument22
+                            argument22: argument22,
+                            argument23: argument23
                         )
                     }
                 }

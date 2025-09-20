@@ -48,8 +48,8 @@ final class AutoInitMacroTests: XCTestCase {
             @AutoInit
             struct User {
                 @Init(label: "foo") let name: String
-                let age: Int
-                let hobby: String?
+                @Init(default: 20) let age: Int
+                @Init(label: "hoge", default: "soccer") let hobby: String?
                 let anyProtocol: any AnyProtocol
                 let someProtocol: some SomeProtocol
                 let closure: () -> Void
@@ -66,8 +66,8 @@ final class AutoInitMacroTests: XCTestCase {
 
                 public init(
                     foo name: String,
-                    age: Int,
-                    hobby: String?,
+                    age: Int = 20,
+                    hoge hobby: String? = "soccer",
                     anyProtocol: any AnyProtocol,
                     someProtocol: some SomeProtocol,
                     closure: @escaping () -> Void
@@ -91,7 +91,7 @@ final class AutoInitMacroTests: XCTestCase {
             @AutoInit
             struct User {
                 @Init(label: "_") let name: String
-                let age: Int
+                @Init(label: "_", default: 20) let age: Int
                 let hobby: String?
             }
             """,
@@ -103,7 +103,7 @@ final class AutoInitMacroTests: XCTestCase {
 
                 public init(
                     _ name: String,
-                    age: Int,
+                    _ age: Int = 20,
                     hobby: String?
                 ) {
                     self.name = name
