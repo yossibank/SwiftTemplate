@@ -8,7 +8,7 @@ let testMacros: [String: Macro.Type] = [
 ]
 
 final class BuilderMacroTests: XCTestCase {
-    func testBuilderMacro() throws {
+    func testBuilderMacroStruct() throws {
         assertMacroExpansion(
             """
             @Builder
@@ -60,6 +60,48 @@ final class BuilderMacroTests: XCTestCase {
                             age: age,
                             hobby: hobby
                         )
+                    }
+                }
+
+                public static func makeTestBuilder() -> Builder {
+                    Builder()
+                }
+            }
+            """,
+            macros: testMacros
+        )
+    }
+
+    func testBuilderMacroEnum() throws {
+        assertMacroExpansion(
+            """
+            @Builder
+            enum Sample {
+                case test1
+                case test2umV
+                case test3
+            }
+            """,
+            expandedSource: """
+            enum Sample {
+                case test1
+                case test2
+                case test3
+
+                public class Builder {
+                    public var enumValue: Sample
+
+                    public init(value: Sample = .test1) {
+                        self.enumValue = value
+                    }
+
+                    public func value(_ value: Sample) -> Self {
+                        self.enumValue = value
+                        return self
+                    }
+
+                    public func build() -> Sample {
+                        return enumValue
                     }
                 }
 

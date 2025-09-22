@@ -14,7 +14,7 @@ enum Diagnostics {
         return SwiftDiagnostics.Diagnostic(
             node: declaration.root,
             message: DiagnosticSimpleMessage(
-                message: "@Builderは構造体のみで有効です",
+                message: "@Builderはstruct, enumのみで有効です",
                 diagnosticID: messageID,
                 severity: .error
             ),

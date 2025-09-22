@@ -31,7 +31,7 @@ extension AutoInitGenerator {
                 public init(
                     \(raw: variables.initArguments)
                 ) {
-                    \(raw: variables.initDefinisions)
+                    \(raw: variables.initDefinitions)
                 }
                 """
             )
@@ -45,7 +45,7 @@ extension [AutoInitGenerator.TypedVariable] {
             .joined(separator: ",\n")
     }
 
-    var initDefinisions: String {
+    var initDefinitions: String {
         map(\.initDefinition)
             .joined(separator: "\n")
     }

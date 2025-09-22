@@ -14,7 +14,7 @@ public struct BuilderMacro: MemberMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        guard declaration.isStruct else {
+        guard declaration.isStruct || declaration.isEnum else {
             guard let diagnostic = Diagnostics.diagnose(
                 declaration: declaration
             ) else {
@@ -42,7 +42,7 @@ extension BuilderMacro.Error: CustomStringConvertible {
     var description: String {
         switch self {
         case .wrongDeclarationSyntax:
-            "Builder Macro supports only structs"
+            "Builder Macro supports only structs and enums"
         }
     }
 }

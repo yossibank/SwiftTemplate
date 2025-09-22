@@ -19,23 +19,20 @@ public struct RakutenViewItem: Hashable, Sendable {
         public let imageURL: URL?
     }
 
-    public struct Parameter {
-        public var keyword: String
-        public var nextPage: Int
-        public var maxPage: Int
+    @AutoInit
+    @Builder
+    public struct Parameter: Sendable {
+        @Init(default: "") public var keyword: String
+        @Init(default: 1) public var nextPage: Int
+        @Init(default: 1) public var maxPage: Int
 
         public var isPageEnd: Bool {
             nextPage > maxPage
         }
 
-        public init(
-            keyword: String = "",
-            nextPage: Int = 1,
-            maxPage: Int = 1
-        ) {
-            self.keyword = keyword
-            self.nextPage = nextPage
-            self.maxPage = maxPage
-        }
+        public static let preview = Parameter
+            .makeTestBuilder()
+            .keyword("テスト")
+            .build()
     }
 }

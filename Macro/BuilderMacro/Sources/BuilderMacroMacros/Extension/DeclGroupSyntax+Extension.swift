@@ -24,6 +24,37 @@ extension DeclGroupSyntax {
     }
 
     /**
+     * enumかどうかを判定する
+     * enum Sample {} → true
+     * struct Foo {} → false
+     */
+    var isEnum: Bool {
+        self.as(EnumDeclSyntax.self) != nil
+    }
+
+    /**
+     * enumの最初に定義されたcase名を取得する
+     * enum Sample {
+     *     case test1 → 取得
+     *     case test2
+     * }
+     */
+    var firstEnumCase: String? {
+        guard let enumDecl = self.as(EnumDeclSyntax.self) else {
+            return nil
+        }
+
+        for member in enumDecl.memberBlock.members {
+            if let enumCase = member.decl.as(EnumCaseDeclSyntax.self),
+               let firstElement = enumCase.elements.first {
+                return firstElement.name.text
+            }
+        }
+
+        return nil
+    }
+
+    /**
      * stored propertyの変数を全て取得する
      */
     var storedVariables: [VariableDeclSyntax] {

@@ -19,15 +19,22 @@ struct BuilderBodyGenerator {
             throw Error.missingDeclarationName
         }
 
-        return generateBody(
-            memberName: memberName,
-            variables: declaration.typedMembers
-        )
+        if declaration.isEnum {
+            return generateEnumBody(
+                memberName: memberName,
+                declaration: declaration
+            )
+        } else {
+            return generateStructBody(
+                memberName: memberName,
+                variables: declaration.typedMembers
+            )
+        }
     }
 }
 
 extension BuilderBodyGenerator {
-    private func generateBody(
+    private func generateStructBody(
         memberName: String,
         variables: [TypedVariable]
     ) -> [DeclSyntax] {
@@ -52,7 +59,7 @@ extension BuilderBodyGenerator {
                 public init(
                     \(raw: variables.initArguments)
                 ) {
-                    \(raw: variables.initDefinisions)
+                    \(raw: variables.initDefinitions)
                 }
                 """
             )
@@ -86,13 +93,68 @@ extension BuilderBodyGenerator {
     }
 }
 
+extension BuilderBodyGenerator {
+    private func generateEnumBody(
+        memberName: String,
+        declaration: DeclGroupSyntax
+    ) -> [DeclSyntax] {
+        [
+            DeclSyntax(enumBuilderClassDecl(memberName: memberName, declaration: declaration)),
+            DeclSyntax(makeEnumTestBuilderDecl())
+        ]
+    }
+
+    private func enumBuilderClassDecl(
+        memberName: String,
+        declaration: DeclGroupSyntax
+    ) -> ClassDeclSyntax {
+        try! ClassDeclSyntax("public class Builder") {
+            DeclSyntax("public var enumValue: \(raw: memberName)")
+
+            DeclSyntax(
+                """
+                \n
+                public init(value: \(raw: memberName) = .\(raw: declaration.firstEnumCase!)) {
+                    self.enumValue = value
+                }
+                """
+            )
+
+            DeclSyntax(
+                """
+                \n
+                public func value(_ value: \(raw: memberName)) -> Self {
+                    self.enumValue = value
+                    return self
+                }
+                """
+            )
+
+            DeclSyntax(
+                """
+                \n
+                public func build() -> \(raw: memberName) {
+                    return enumValue
+                }
+                """
+            )
+        }
+    }
+
+    private func makeEnumTestBuilderDecl() -> FunctionDeclSyntax {
+        try! FunctionDeclSyntax("public static func makeTestBuilder() -> Builder") {
+            ExprSyntax("Builder()")
+        }
+    }
+}
+
 extension [BuilderBodyGenerator.TypedVariable] {
     var initArguments: String {
         map(\.initArgument)
             .joined(separator: ",\n")
     }
 
-    var initDefinisions: String {
+    var initDefinitions: String {
         map(\.initDefinition)
             .joined(separator: "\n")
     }

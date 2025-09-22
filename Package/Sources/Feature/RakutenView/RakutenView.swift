@@ -177,7 +177,7 @@ public struct RakutenView: View {
     RakutenView(
         viewModel: RakutenViewModelPreview(
             viewState: .initialLoading,
-            parameter: .init(keyword: "テスト")
+            parameter: .preview
         )
     )
 }
@@ -186,7 +186,7 @@ public struct RakutenView: View {
     RakutenView(
         viewModel: RakutenViewModelPreview(
             viewState: .loaded(items: RakutenViewItem.preview),
-            parameter: .init(keyword: "テスト")
+            parameter: .preview
         )
     )
 }
