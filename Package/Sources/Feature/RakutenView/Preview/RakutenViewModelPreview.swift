@@ -15,7 +15,7 @@ public final class RakutenViewModelPreview {
     // MARK: - Output
 
     public var viewState: AppPagingState<RakutenViewItem.Item>
-    public var loadedItems: [RakutenViewItem.Item] = RakutenViewItem.preview
+    public var loadedItems = [RakutenViewItem.Item]()
     public var parameter = RakutenViewItem.Parameter()
 
     // MARK: - Input

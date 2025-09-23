@@ -167,6 +167,31 @@ public struct RakutenView: View {
     }
 }
 
+private extension Preview {
+    static let parameter = RakutenViewItem.Parameter(keyword: "テスト")
+
+    static let items: [RakutenViewItem.Item] = [
+        .makeTestBuilder()
+            .id("1")
+            .name("テスト商品A")
+            .price("1,200円")
+            .imageURL(URL(string: "https://picsum.photos/200"))
+            .build(),
+        .makeTestBuilder()
+            .id("2")
+            .name("テスト商品B")
+            .price("12,200円")
+            .imageURL(URL(string: "https://picsum.photos/200"))
+            .build(),
+        .makeTestBuilder()
+            .id("3")
+            .name("テスト商品C")
+            .price("3,900円")
+            .imageURL(URL(string: "https://picsum.photos/200"))
+            .build()
+    ]
+}
+
 #Preview("初期状態") {
     RakutenView(
         viewModel: RakutenViewModelPreview()
@@ -177,7 +202,7 @@ public struct RakutenView: View {
     RakutenView(
         viewModel: RakutenViewModelPreview(
             viewState: .initialLoading,
-            parameter: .preview
+            parameter: Preview.parameter
         )
     )
 }
@@ -185,8 +210,8 @@ public struct RakutenView: View {
 #Preview("読み込み完了状態") {
     RakutenView(
         viewModel: RakutenViewModelPreview(
-            viewState: .loaded(items: RakutenViewItem.preview),
-            parameter: .preview
+            viewState: .loaded(items: Preview.items),
+            parameter: Preview.parameter
         )
     )
 }
