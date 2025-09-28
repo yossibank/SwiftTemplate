@@ -5,13 +5,13 @@ public macro Init(label: String) = #externalMacro(
 )
 
 @attached(peer)
-public macro Init(default: Any) = #externalMacro(
+public macro Init(default: Any?) = #externalMacro(
     module: "AutoInitMacroMacros",
     type: "InitMacro"
 )
 
 @attached(peer)
-public macro Init(label: String, default: Any) = #externalMacro(
+public macro Init(label: String, default: Any?) = #externalMacro(
     module: "AutoInitMacroMacros",
     type: "InitMacro"
 )
