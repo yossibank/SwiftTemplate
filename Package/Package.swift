@@ -58,7 +58,8 @@ extension Package {
         platforms: [SupportedPlatform],
         dependencies: [Dependency] = [],
         targets: [Target],
-        testTargets: [Target]
+        testTargets: [Target],
+        binaryTargets: [Target]
     ) -> Package {
         .init(
             name: name,
@@ -66,17 +67,28 @@ extension Package {
             platforms: platforms,
             products: targets.map { $0.library() },
             dependencies: dependencies,
-            targets: targets + testTargets
+            targets: targets + testTargets + binaryTargets
         )
     }
 }
 
+// MARK: - Binary
+
+let sharedLibraryBinary = Target.binaryTarget(
+    name: "SharedLibrary",
+    path: "../xcframework/SharedLibrary.xcframework.zip"
+)
+
 // MARK: - KMP
 
-let sharedLibrary = Target.Dependency.product(
-    name: "SharedLibrary",
-    package: "KotlinMultiplatformLibrary"
+let sharedLibrary = Target.Dependency.target(
+    name: "SharedLibrary"
 )
+
+// let sharedLibrary = Target.Dependency.product(
+//    name: "SharedLibrary",
+//    package: "KotlinMultiplatformLibrary"
+// )
 
 // MARK: - Library
 
@@ -333,10 +345,10 @@ let package = Package.package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
             from: "9.1.0"
         ),
-        .package(
-            url: "https://github.com/yossibank/KotlinMultiplatformLibrary",
-            from: "1.0.2"
-        ),
+//        .package(
+//            url: "https://github.com/yossibank/KotlinMultiplatformLibrary",
+//            from: "1.0.2"
+//        ),
         .package(path: "../Macro/AutoInitMacro"),
         .package(path: "../Macro/BuilderMacro"),
         .package(path: "../Macro/URLMacro")
@@ -363,5 +375,8 @@ let package = Package.package(
         appExtensionTests,
         appFoundationTests,
         rakutenTests
+    ],
+    binaryTargets: [
+        sharedLibraryBinary
     ]
 )

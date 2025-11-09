@@ -6,7 +6,7 @@ setup:
 	$(MAKE) install-mint-packages
 	$(MAKE) generate-sourcery
 	$(MAKE) generate-mock
-	$(MAKE) setting-xcode
+	$(MAKE) xcode-prebuilts
 	$(MAKE) open
 
 .PHONY: pre-commit
@@ -57,8 +57,8 @@ generate-app-environment:
 generate-mock:
 	zsh ./script/setting/mockolo.sh
 
-.PHONY: setting-xcode
-setting-xcode:
+.PHONY: xcode-prebuilts
+xcode-prebuilts:
 	defaults write com.apple.dt.Xcode IDEPackageEnablePrebuilts YES
 
 .PHONY: run-format

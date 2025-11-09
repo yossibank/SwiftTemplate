@@ -1,5 +1,6 @@
 import Foundation
 import os
+import SharedLibrary
 
 public enum Logger {
     public enum Category: String, CaseIterable, Sendable {
@@ -42,6 +43,7 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
+        print(CustomFibiKt.generateFibi().iterator().next())
         guard !AppConfiguration.isRelease else {
             return
         }

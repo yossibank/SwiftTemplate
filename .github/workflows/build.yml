@@ -15,8 +15,6 @@ permissions:
   statuses: write
 
 env:
-  ACTIONS_RUNNER_DEBUG: true
-  ACTIONS_STEP_DEBUG: true
   DEVELOPER_DIR: /Applications/Xcode.app
   GOOGLE_SERVICE_INFO_PLIST_PATH: App/iOS/Debug/GoogleService-Info.plist
 
@@ -24,23 +22,16 @@ jobs:
   ci:
     name: Run Build
 
-    runs-on: macos-15
+    runs-on: macos-26
 
     env:
       MINT_PATH: mint/lib
       MINT_LINK_PATH: mint/bin
 
     steps:
-      # チェックアウト(GitHubリポジトリからソース取得)
+      # チェックアウト
       - name: Checkout repository
         uses: actions/checkout@v5
-
-      # 環境変数設定
-      - name: Set up environment variables
-        run: |
-          touch .env
-          echo "GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> .env
-          cat .env
 
       # Xcodeの一覧出力
       - name: Show Xcode List
@@ -104,28 +95,6 @@ jobs:
       - name: Setting Xcode Project
         run: |
           make setup
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # プライベートリポジトリアクセス設定
-      - name: create app token
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: 'yossibank'
-
-      # プライベートリポジトリアクセス設定
-      - name: set access token for private repository
-        shell: bash
-        env:
-          ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: |
-          git config --global url."https://x-access-token:$ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
-          touch ~/.netrc
-          echo "machine github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
-          echo "machine api.github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
 
       # ビルド
       - name: Xcode Build
@@ -134,7 +103,7 @@ jobs:
           -workspace SwiftTemplate.xcworkspace
           -configuration Debug
           -scheme Debug
-          -destination 'platform=iOS Simulator,name=iPhone 16'
+          -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
           -clonedSourcePackagesDirPath SourcePackages
           -derivedDataPath DerivedData
           -skipMacroValidation
