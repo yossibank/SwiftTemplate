@@ -1,5 +1,6 @@
 import Foundation
 import os
+import SharedLibrary
 
 public enum Logger {
     public enum Category: String, CaseIterable, Sendable {

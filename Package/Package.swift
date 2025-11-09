@@ -71,6 +71,13 @@ extension Package {
     }
 }
 
+// MARK: - KMP
+
+let sharedLibrary = Target.Dependency.product(
+    name: "SharedLibrary",
+    package: "KotlinMultiplatformLibrary"
+)
+
 // MARK: - Library
 
 let firebaseAnalytics = Target.Dependency.product(
@@ -118,6 +125,9 @@ let appFoundation = Target.target(
     name: "AppFoundation",
     dependencies: [
         appExtension
+    ],
+    dependenciesLibraries: [
+        sharedLibrary
     ],
     path: "./Sources/Core/AppFoundation"
 )
@@ -322,6 +332,10 @@ let package = Package.package(
         .package(
             url: "https://github.com/AliSoftware/OHHTTPStubs",
             from: "9.1.0"
+        ),
+        .package(
+            url: "https://github.com/yossibank/KotlinMultiplatformLibrary",
+            from: "1.0.2"
         ),
         .package(path: "../Macro/AutoInitMacro"),
         .package(path: "../Macro/BuilderMacro"),
