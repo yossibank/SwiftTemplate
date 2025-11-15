@@ -43,7 +43,8 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
-        print(CustomFibiKt.generateFibi().iterator().next())
+        print(SharedTest().test())
+
         guard !AppConfiguration.isRelease else {
             return
         }
