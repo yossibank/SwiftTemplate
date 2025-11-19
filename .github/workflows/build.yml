@@ -101,8 +101,9 @@ jobs:
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: ${{ secrets.APP_ID }}
+          app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: yossibank
 
       # GitHub Appトークン設定
       - name: set access token for private repository
@@ -111,9 +112,17 @@ jobs:
           ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git config --global url."https://x-access-token:$ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
-          touch ~/.netrc
-          echo "machine github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
-          echo "machine api.github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
+
+          cat > ~/.netrc << EOF
+          machine github.com
+            login x-access-token
+            password $ACCESS_TOKEN
+          machine api.github.com
+            login x-access-token
+            password $ACCESS_TOKEN
+          EOF
+
+          chmod 600 ~/.netrc
 
       # ビルド
       - name: Xcode Build

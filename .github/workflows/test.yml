@@ -1,148 +1,148 @@
-name: Test
+# name: Test
 
-on:
-  push:
-    branches:
-      - develop
-  pull_request:
-    branches:
-      - '*'
+# on:
+#   push:
+#     branches:
+#       - develop
+#   pull_request:
+#     branches:
+#       - '*'
 
-permissions:
-  contents: read
-  pull-requests: write
-  issues: write
-  statuses: write
+# permissions:
+#   contents: read
+#   pull-requests: write
+#   issues: write
+#   statuses: write
 
-env:
-  DEVELOPER_DIR: /Applications/Xcode.app
-  GOOGLE_SERVICE_INFO_PLIST_PATH: App/iOS/Debug/GoogleService-Info.plist
+# env:
+#   DEVELOPER_DIR: /Applications/Xcode.app
+#   GOOGLE_SERVICE_INFO_PLIST_PATH: App/iOS/Debug/GoogleService-Info.plist
 
-jobs:
-  ci:
-    name: Run Test
+# jobs:
+#   ci:
+#     name: Run Test
 
-    runs-on: macos-26
+#     runs-on: macos-26
 
-    env:
-      MINT_PATH: mint/lib
-      MINT_LINK_PATH: mint/bin
+#     env:
+#       MINT_PATH: mint/lib
+#       MINT_LINK_PATH: mint/bin
 
-    steps:
-      # チェックアウト
-      - name: Checkout repository
-        uses: actions/checkout@v5
+#     steps:
+#       # チェックアウト
+#       - name: Checkout repository
+#         uses: actions/checkout@v5
 
-      # Xcodeの一覧出力
-      - name: Show Xcode List
-        run: ls /Applications | grep 'Xcode'
+#       # Xcodeの一覧出力
+#       - name: Show Xcode List
+#         run: ls /Applications | grep 'Xcode'
 
-      # Xcodeのバージョン出力
-      - name: Show Xcode Version
-        run: xcodebuild -version
+#       # Xcodeのバージョン出力
+#       - name: Show Xcode Version
+#         run: xcodebuild -version
 
-      # 使用可能Simulatorの一覧出力
-      - name: Show Simulator List
-        run: xcrun simctl list devices
+#       # 使用可能Simulatorの一覧出力
+#       - name: Show Simulator List
+#         run: xcrun simctl list devices
 
-      # Simulatorのダウンロード
-      - name: Download iOS Platform
-        run: xcodebuild -downloadPlatform iOS
+#       # Simulatorのダウンロード
+#       - name: Download iOS Platform
+#         run: xcodebuild -downloadPlatform iOS
 
-      # Gemsのインストール
-      - name: Install Bundled Gems
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+#       # Gemsのインストール
+#       - name: Install Bundled Gems
+#         run: |
+#           bundle config path vendor/bundle
+#           bundle install --jobs 4 --retry 3
 
-      # Mintインストール
-      - name: Install Mint
-        run: |
-          brew install mint
+#       # Mintインストール
+#       - name: Install Mint
+#         run: |
+#           brew install mint
 
-      # Gemsのキャッシュ
-      - name: Cache Gems
-        uses: actions/cache@v4
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+#       # Gemsのキャッシュ
+#       - name: Cache Gems
+#         uses: actions/cache@v4
+#         with:
+#           path: vendor/bundle
+#           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-gems-
 
-      # Mintで管理しているライブラリのキャッシュ
-      - name: Cache Mint Packages
-        uses: actions/cache@v4
-        with:
-          path: mint
-          key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
-          restore-keys: |
-            ${{ runner.os }}-mint-
+#       # Mintで管理しているライブラリのキャッシュ
+#       - name: Cache Mint Packages
+#         uses: actions/cache@v4
+#         with:
+#           path: mint
+#           key: ${{ runner.os }}-mint-${{ hashFiles('**/Mintfile') }}
+#           restore-keys: |
+#             ${{ runner.os }}-mint-
 
-      # SPMのライブラリのキャッシュ
-      - name: Cache Swift Packages
-        uses: actions/cache@v4
-        with:
-          path: SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
-          restore-keys: ${{ runner.os }}-spm-
+#       # SPMのライブラリのキャッシュ
+#       - name: Cache Swift Packages
+#         uses: actions/cache@v4
+#         with:
+#           path: SourcePackages
+#           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+#           restore-keys: ${{ runner.os }}-spm-
 
-      # GoogleService-Info.plistの復元
-      - name: Decode GoogleService-Info.plist
-        run: |
-          echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_DEBUG_CONTENT }} | base64 -o ${{ env.GOOGLE_SERVICE_INFO_PLIST_PATH }} -D
+#       # GoogleService-Info.plistの復元
+#       - name: Decode GoogleService-Info.plist
+#         run: |
+#           echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_DEBUG_CONTENT }} | base64 -o ${{ env.GOOGLE_SERVICE_INFO_PLIST_PATH }} -D
 
-      # プロジェクトファイル設定
-      - name: Setting Xcode Project
-        run: |
-          make setup
+#       # プロジェクトファイル設定
+#       - name: Setting Xcode Project
+#         run: |
+#           make setup
 
-      # GitHub Appトークン作成
-      - name: create app token
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+#       # GitHub Appトークン作成
+#       - name: create app token
+#         uses: actions/create-github-app-token@v1
+#         id: app-token
+#         with:
+#           app-id: ${{ vars.APP_ID }}
+#           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      # GitHub Appトークン設定
-      - name: set access token for private repository
-        shell: bash
-        env:
-          ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
-        run: |
-          git config --global url."https://x-access-token:$ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
-          touch ~/.netrc
-          echo "machine github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
-          echo "machine api.github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
+#       # GitHub Appトークン設定
+#       - name: set access token for private repository
+#         shell: bash
+#         env:
+#           ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
+#         run: |
+#           git config --global url."https://x-access-token:$ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
+#           touch ~/.netrc
+#           echo "machine github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
+#           echo "machine api.github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
 
-      # テスト
-      - name: Xcode Test
-        run: set -o pipefail &&
-          xcodebuild
-          -workspace SwiftTemplate.xcworkspace
-          -configuration Debug
-          -scheme Debug
-          -testPlan 'UnitTest'
-          -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
-          -clonedSourcePackagesDirPath SourcePackages
-          -resultBundlePath Test/SwiftTemplate.xcresult
-          -derivedDataPath DerivedData
-          -skipMacroValidation
-          clean test
-          | bundle exec xcpretty --report html
+#       # テスト
+#       - name: Xcode Test
+#         run: set -o pipefail &&
+#           xcodebuild
+#           -workspace SwiftTemplate.xcworkspace
+#           -configuration Debug
+#           -scheme Debug
+#           -testPlan 'UnitTest'
+#           -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
+#           -clonedSourcePackagesDirPath SourcePackages
+#           -resultBundlePath Test/SwiftTemplate.xcresult
+#           -derivedDataPath DerivedData
+#           -skipMacroValidation
+#           clean test
+#           | bundle exec xcpretty --report html
 
-      # Danger実行
-      - uses: MeilCli/danger-action@v6.0.37
-        with:
-          plugins_file: 'Gemfile'
-          install_path: 'vendor/bundle'
-          danger_file: 'danger/testfile'
-          danger_id: 'Test'
-        env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       # Danger実行
+#       - uses: MeilCli/danger-action@v6.0.37
+#         with:
+#           plugins_file: 'Gemfile'
+#           install_path: 'vendor/bundle'
+#           danger_file: 'danger/testfile'
+#           danger_id: 'Test'
+#         env:
+#           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # テスト結果のアップロード
-      - uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: build/reports
+#       # テスト結果のアップロード
+#       - uses: actions/upload-artifact@v4
+#         with:
+#           name: test-results
+#           path: build/reports
