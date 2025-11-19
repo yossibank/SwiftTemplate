@@ -112,17 +112,9 @@ jobs:
           ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git config --global url."https://x-access-token:$ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
-
-          cat > ~/.netrc << EOF
-          machine github.com
-            login x-access-token
-            password $ACCESS_TOKEN
-          machine api.github.com
-            login x-access-token
-            password $ACCESS_TOKEN
-          EOF
-
-          chmod 600 ~/.netrc
+          touch ~/.netrc
+          echo "machine github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
+          echo "machine api.github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
 
       # ビルド
       - name: Xcode Build
