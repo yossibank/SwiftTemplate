@@ -58,8 +58,7 @@ extension Package {
         platforms: [SupportedPlatform],
         dependencies: [Dependency] = [],
         targets: [Target],
-        testTargets: [Target],
-        binaryTargets: [Target]
+        testTargets: [Target]
     ) -> Package {
         .init(
             name: name,
@@ -67,23 +66,12 @@ extension Package {
             platforms: platforms,
             products: targets.map { $0.library() },
             dependencies: dependencies,
-            targets: targets + testTargets + binaryTargets
+            targets: targets + testTargets
         )
     }
 }
 
-// MARK: - Binary
-
-// let sharedLibraryBinary = Target.binaryTarget(
-//    name: "SharedLibrary",
-//    path: "../xcframework/SharedLibrary.xcframework.zip"
-// )
-
 // MARK: - KMP
-
-// let sharedLibrary = Target.Dependency.target(
-//    name: "SharedLibrary"
-// )
 
 let sharedLibrary = Target.Dependency.product(
     name: "SharedLibrary",
@@ -375,8 +363,5 @@ let package = Package.package(
         appExtensionTests,
         appFoundationTests,
         rakutenTests
-    ],
-    binaryTargets: [
-        //        sharedLibraryBinary
     ]
 )
