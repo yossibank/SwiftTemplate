@@ -96,6 +96,25 @@ jobs:
         run: |
           make setup
 
+      # GitHub Appトークン作成
+      - name: create app token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      # GitHub Appトークン設定
+      - name: set access token for private repository
+        shell: bash
+        env:
+          ACCESS_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          git config --global url."https://x-access-token:$ACCESS_TOKEN@github.com/".insteadOf "https://github.com/"
+          touch ~/.netrc
+          echo "machine github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
+          echo "machine api.github.com login x-access-token password $ACCESS_TOKEN" >> ~/.netrc
+
       # ビルド
       - name: Xcode Build
         run: set -o pipefail &&
