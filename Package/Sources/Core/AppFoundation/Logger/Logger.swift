@@ -43,7 +43,7 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
-        print(SharedTest().test())
+        print(Greeting().greet())
 
         guard !AppConfiguration.isRelease else {
             return

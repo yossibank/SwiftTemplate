@@ -335,7 +335,7 @@ let package = Package.package(
         ),
         .package(
             url: "https://github.com/yossibank/KotlinMultiplatformLibrary",
-            from: "1.0.7"
+            from: "1.0.1"
         ),
         .package(path: "../Macro/AutoInitMacro"),
         .package(path: "../Macro/BuilderMacro"),

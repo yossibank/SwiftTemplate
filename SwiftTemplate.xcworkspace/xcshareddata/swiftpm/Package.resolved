@@ -1,5 +1,5 @@
 {
-  "originHash" : "b30852151b41f7e3aa409999926ca47ad1540bbc61ca5a643e8fac1b2471be87",
+  "originHash" : "b6b91d98fa82ec41cdb74414a1df7116e1a7d56d4fef88c276751172f3e5a861",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yossibank/KotlinMultiplatformLibrary",
       "state" : {
-        "revision" : "92affdaf8256166d48125ae51432a17cd1fd138c",
-        "version" : "1.0.7"
+        "revision" : "25da1348b6604d05b2322cfe5c0425a1706a9c00",
+        "version" : "1.0.1"
       }
     },
     {
