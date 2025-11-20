@@ -43,7 +43,7 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
-        print(Greeting().greet())
+        print(KotlinMultiplatform().testString())
 
         guard !AppConfiguration.isRelease else {
             return
