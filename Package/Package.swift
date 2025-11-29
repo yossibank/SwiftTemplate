@@ -73,9 +73,9 @@ extension Package {
 
 // MARK: - KMP
 
-let sharedLibrary = Target.Dependency.product(
-    name: "SharedLibrary",
-    package: "KotlinMultiplatformLibrary"
+let kotlinMultiplatformLibrary = Target.Dependency.product(
+    name: "KotlinMultiplatformLibrary",
+    package: "KotlinTemplate"
 )
 
 // MARK: - Library
@@ -127,7 +127,7 @@ let appFoundation = Target.target(
         appExtension
     ],
     dependenciesLibraries: [
-        sharedLibrary
+        kotlinMultiplatformLibrary
     ],
     path: "./Sources/Core/AppFoundation"
 )
@@ -334,8 +334,8 @@ let package = Package.package(
             from: "9.1.0"
         ),
         .package(
-            url: "https://github.com/yossibank/KotlinMultiplatformLibrary",
-            from: "1.0.2"
+            url: "https://github.com/yossibank/KotlinTemplate",
+            from: "1.0.3"
         ),
         .package(path: "../Macro/AutoInitMacro"),
         .package(path: "../Macro/BuilderMacro"),

@@ -1,6 +1,6 @@
 import Foundation
+import KotlinMultiplatformLibrary
 import os
-import SharedLibrary
 
 public enum Logger {
     public enum Category: String, CaseIterable, Sendable {
@@ -43,7 +43,7 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
-        print(KotlinMultiplatform().testString())
+        print(Sample().string())
 
         guard !AppConfiguration.isRelease else {
             return
