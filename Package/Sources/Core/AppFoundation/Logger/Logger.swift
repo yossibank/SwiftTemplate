@@ -43,8 +43,6 @@ private extension Logger {
         function: String = #function,
         line: UInt = #line
     ) {
-        print(Sample().string())
-
         guard !AppConfiguration.isRelease else {
             return
         }
