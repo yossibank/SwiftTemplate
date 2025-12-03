@@ -1,5 +1,5 @@
 {
-  "originHash" : "9ae9f8311f7ce5db6c123495379cb10bb0972dadf20bc60c50582884b633195d",
+  "originHash" : "aeade46ab520bada9912a65627f17b556a1c0f9b38100818da152284a267578a",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yossibank/KotlinTemplate",
       "state" : {
-        "revision" : "7d9e9e7221b2a626071989c5fa85d77ddac58429",
-        "version" : "1.1.7"
+        "revision" : "59c39d38426034b689e82cff8c4d40867ff7eed3",
+        "version" : "1.2.4"
       }
     },
     {

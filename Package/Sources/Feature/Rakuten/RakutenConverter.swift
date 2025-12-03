@@ -1,5 +1,6 @@
 import AppFoundation
 import AutoInitMacro
+import KotlinMultiplatformLibrary
 import RakutenView
 
 /// @mockable
@@ -9,20 +10,16 @@ public protocol RakutenConverterProtocol: Sendable {
 
 @AutoInit
 public struct RakutenConverter: RakutenConverterProtocol {
-    private let valueConverter = ValueConverter()
-
     public func convert(_ model: RakutenModel) -> RakutenViewItem {
         RakutenViewItem(
             items: model.items.map {
                 RakutenViewItem.Item(
                     id: $0.id,
                     name: $0.name,
-                    price: valueConverter.format(
-                        ValueConverter.Formatter(
-                            value: $0.price,
-                            valueFormat: ValueFormat(suffix: .yen)
-                        )
-                    ),
+                    price: ValueFormatter(
+                        value: .init(value: $0.price),
+                        style: .init(suffix: .yen)
+                    ).format(),
                     imageURL: $0.imageURL
                 )
             },
