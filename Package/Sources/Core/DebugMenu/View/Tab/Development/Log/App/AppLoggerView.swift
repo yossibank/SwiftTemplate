@@ -1,11 +1,27 @@
 import AppExtension
 import AppFoundation
+import KotlinMultiplatformLibrary
 import SwiftUI
 
 struct AppLoggerView: View {
     @State private var nowDate = Date.now
 
-    private let dateConverter = DateConverter(.jp)
+    private var dateTime: String {
+        dateConverter.epochToString(
+            epoch: entry.date.epoch,
+            format: .mdehmsJp
+        )
+    }
+
+    private var timeDifference: String {
+        dateComparator.timeDifference(
+            nowEpochTime: nowDate.epoch,
+            targetEpochTime: entry.date.epoch
+        )
+    }
+
+    private let dateConverter = DateConverter()
+    private let dateComparator = DateComparator()
 
     var entry: LoggerEntry
 
@@ -16,11 +32,10 @@ struct AppLoggerView: View {
                     .font(.caption2)
                     .foregroundColor(entry.category.color)
 
-                Text(dateConverter.dateToString(entry.date, format: .mmddEHHmmssSSS))
+                Text(dateTime)
                     .font(.caption2)
                     .foregroundStyle(.gray)
                     .lineLimit(1)
-                    .frame(maxWidth: 128, alignment: .leading)
 
                 Text(entry.category.title)
                     .font(.caption2)
@@ -33,7 +48,7 @@ struct AppLoggerView: View {
 
                 Spacer()
 
-                Text(dateConverter.timeDifference(nowDate, targetDate: entry.date))
+                Text(timeDifference)
                     .font(.caption2)
                     .foregroundStyle(.gray)
                     .lineLimit(1)

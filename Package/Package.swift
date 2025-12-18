@@ -297,14 +297,6 @@ let appExtensionTests = Target.testTarget(
     path: "./Tests/Core/AppExtensionTests"
 )
 
-let appFoundationTests = Target.testTarget(
-    name: "AppFoundationTests",
-    dependencies: [
-        appFoundation
-    ],
-    path: "./Tests/Core/AppFoundationTests"
-)
-
 let rakutenTests = Target.testTarget(
     name: "RakutenTests",
     dependencies: [
@@ -335,7 +327,7 @@ let package = Package.package(
         ),
         .package(
             url: "https://github.com/yossibank/KotlinTemplate",
-            from: "1.2.4"
+            from: "1.3.0"
         ),
         .package(path: "../Macro/AutoInitMacro"),
         .package(path: "../Macro/BuilderMacro"),
@@ -361,7 +353,6 @@ let package = Package.package(
     testTargets: [
         apiClientTests,
         appExtensionTests,
-        appFoundationTests,
         rakutenTests
     ]
 )

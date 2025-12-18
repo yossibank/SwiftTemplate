@@ -1,12 +1,28 @@
 import AppExtension
 import AppFoundation
+import KotlinMultiplatformLibrary
 import SwiftUI
 import ViewComponent
 
 struct APIResponseDetailView: View {
     @State private var nowDate = Date.now
 
-    private let dateConverter = DateConverter(.jp)
+    private var dateTime: String {
+        dateConverter.epochToString(
+            epoch: model.date.epoch,
+            format: .mdehmsJp
+        )
+    }
+
+    private var timeDifference: String {
+        dateComparator.timeDifference(
+            nowEpochTime: nowDate.epoch,
+            targetEpochTime: model.date.epoch
+        )
+    }
+
+    private let dateConverter = DateConverter()
+    private let dateComparator = DateComparator()
 
     let model: APIModel
 
@@ -21,7 +37,7 @@ struct APIResponseDetailView: View {
     private var timeSectionView: some View {
         Section {
             HStack(spacing: 8) {
-                Text(dateConverter.dateToString(model.date, format: .mmddEHHmmssSSS))
+                Text(dateTime)
                     .font(.caption)
                     .foregroundStyle(.gray)
                     .lineLimit(1)
@@ -37,7 +53,7 @@ struct APIResponseDetailView: View {
 
                 Spacer()
 
-                Text(dateConverter.timeDifference(nowDate, targetDate: model.date))
+                Text(timeDifference)
                     .font(.caption)
                     .foregroundStyle(.gray)
                     .lineLimit(1)

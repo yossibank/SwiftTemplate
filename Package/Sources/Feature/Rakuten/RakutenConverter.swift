@@ -16,10 +16,9 @@ public struct RakutenConverter: RakutenConverterProtocol {
                 RakutenViewItem.Item(
                     id: $0.id,
                     name: $0.name,
-                    price: ValueFormatter(
-                        value: .init(value: $0.price),
+                    price: ValueFormatter(value: .init(value: $0.price)).format(
                         style: .init(suffix: .yen)
-                    ).format(),
+                    ),
                     imageURL: $0.imageURL
                 )
             },

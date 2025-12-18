@@ -1,6 +1,7 @@
 import AppFoundation
 import DebugMenu
 import FirebaseLive
+import KotlinMultiplatformLibrary
 import SwiftUI
 import UIKit
 
@@ -25,9 +26,9 @@ public final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func sendEvent() {
-        let date = DateConverter().dateToString(
-            .now,
-            format: .yyyyMdJp
+        let date = DateConverter().epochToString(
+            epoch: Date.now.epoch,
+            format: .ymdJp
         )
 
         FirebaseAnalytics(screenID: .boot).sendEvent(.boot(date: date))
