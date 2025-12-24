@@ -72,9 +72,8 @@ open:
 .PHONY: clean
 clean:
 	rm -rf ~/Library/Developer/Xcode/DerivedData
-	rm -rf ~/Library/Caches/org.swift.swiftpm
-	rm -rf ~/Library/Caches/com.apple.dt.Xcode
-	rm -rf ~/Library/Developer/Xcode/DerivedData/
 	rm -rf ~/Library/Developer/Xcode/iOS\ DeviceSupport
 	rm -rf ~/Library/Developer/XCPGDevices
+	rm -rf ~/Library/Caches/org.swift.swiftpm
+	rm -rf ~/Library/Caches/com.apple.dt.Xcode
 	rm -rf ~/Library/org.swift.swiftpm
