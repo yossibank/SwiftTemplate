@@ -7,11 +7,11 @@ import PackageDescription
 let package = Package(
     name: "URLMacro",
     platforms: [
-        .macOS(.v13),
-        .iOS(.v16),
-        .tvOS(.v16),
-        .watchOS(.v9),
-        .macCatalyst(.v16)
+        .macOS(.v15),
+        .iOS(.v18),
+        .tvOS(.v18),
+        .watchOS(.v11),
+        .macCatalyst(.v18)
     ],
     products: [
         .library(

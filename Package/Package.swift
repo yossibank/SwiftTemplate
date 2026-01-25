@@ -314,7 +314,7 @@ let rakutenTests = Target.testTarget(
 let package = Package.package(
     name: "Package",
     platforms: [
-        .iOS(.v17)
+        .iOS(.v18)
     ],
     dependencies: [
         .package(
